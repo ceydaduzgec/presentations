@@ -1,2 +1,1 @@
-# diva-ai
-13 July 2024 Diva AI conference
+Welcome to my presentation repository. Hope you enjoy!
