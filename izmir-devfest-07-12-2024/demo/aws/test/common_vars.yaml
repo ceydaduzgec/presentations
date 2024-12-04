@@ -1,0 +1,8 @@
+namespace: devfest
+environment: test
+
+tags:
+  Namespace: devfest
+  Environment: test
+  Terraform: true
+  Owner: CeydaD
