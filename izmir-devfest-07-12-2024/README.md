@@ -6,6 +6,9 @@ terraform init
 ## Provider Version
 terraform state replace-provider registry.terraform.io/-/aws hashicorp/aws
 
+# Terraformer
+https://github.com/GoogleCloudPlatform/terraformer
+
 terraformer import aws --resources=vpc,subnet --regions=eu-west-1 --profile=sufledev  
 terraformer import aws --resources=ec2_instance --regions=eu-west-1 --profile=sufledev 
 
@@ -33,6 +36,8 @@ terraform state list
 terraform apply
 
 # 04-terraform-modules
+https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest?tab=outputs
+https://registry.terraform.io/modules/terraform-aws-modules/ec2-instance/aws/latest
 
 ## Initilize Terragrunt
 terraform init
