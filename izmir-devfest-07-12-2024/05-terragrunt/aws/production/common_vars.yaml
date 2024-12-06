@@ -1,0 +1,8 @@
+namespace: devfest
+environment: prod
+
+tags:
+  Namespace: devfest
+  Environment: prod
+  Terraform: true
+  Owner: CeydaD

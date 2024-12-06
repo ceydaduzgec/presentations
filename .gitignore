@@ -8,5 +8,6 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
-*backend.tf
-*provider.tf
+*.terragrunt*
+*04-terragrunt/aws/test/backend.tf
+*04-terragrunt/provider.tf
