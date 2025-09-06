@@ -44,15 +44,34 @@
             display: block;
         }
 
-        .about-me-slide {
+        /* Blue wrapper for title slide */
+        .blue-wrapper-slide {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 40px;
+        }
+
+        .blue-wrapper-slide .white-content {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Orange wrapper for about me slide */
+        .orange-wrapper-slide {
             background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
             padding: 40px;
         }
 
-        .about-me-slide .white-content {
+        .orange-wrapper-slide .white-content {
             background: white;
             border-radius: 20px;
-            padding: 60px;
+            padding: 50px;
             width: 100%;
             height: 100%;
             display: flex;
@@ -214,11 +233,6 @@
             backdrop-filter: blur(10px);
         }
 
-        .title-slide {
-            background: white;
-            color: #2c3e50;
-        }
-
         .title-slide h1 {
             color: #2c3e50;
             font-size: 4rem;
@@ -231,16 +245,9 @@
             color: #3498db;
         }
 
-        .title-slide .name {
-            font-size: 2.8rem;
-            color: #2c3e50;
-            margin-bottom: 40px;
-            font-weight: 600;
-        }
-
         .title-slide .event-info {
             font-size: 1.3rem;
-            color: #3498db;
+            color: #555;
         }
 
         .comparison-table {
@@ -350,15 +357,39 @@
             border-radius: 10px;
         }
 
+        /* Compact About Me styling */
+        .about-me-slide h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .about-me-slide li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .linkedin-qr {
+            width: 100px;
+            height: 100px;
+            margin: 15px auto 5px auto;
+        }
+
+        .connect-text {
+            font-size: 1rem;
+            margin: 5px 0 15px 0;
+            font-weight: 600;
+        }
+
         .bottom-logo {
-            width: 150px;
+            width: 100px;
             height: auto;
-            margin-top: 30px;
+            margin-top: 10px;
         }
 
         .logo-fallback {
-            width: 150px;
-            height: 60px;
+            width: 100px;
+            height: 40px;
             background: #FF5722;
             color: white;
             display: inline-flex;
@@ -366,8 +397,8 @@
             justify-content: center;
             border-radius: 10px;
             font-weight: bold;
-            font-size: 1.5rem;
-            margin-top: 30px;
+            font-size: 1.2rem;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -378,15 +409,17 @@
         </div>
 
         <!-- Slide 1: Title -->
-        <div class="slide active title-slide">
-               <h1>Beginner's Guide to Terragrunt</h1>
-            <p class="subtitle">Simplifying Terraform Infrastructure Management</p>
-            <p class="subtitle">Ceyda Duzgec</p>
-            <p class="event-info">SREday London Q3 2025</p>
+        <div class="slide active blue-wrapper-slide">
+            <div class="white-content">
+                <h1>Beginner's Guide to Terragrunt</h1>
+                <p class="subtitle">Simplifying Terraform Infrastructure Management</p>
+                <p class="subtitle">Ceyda Duzgec</p>
+                <p class="event-info">SREday London Q3 2025</p>
+            </div>
         </div>
 
         <!-- Slide 2: About Me -->
-        <div class="slide about-me-slide">
+        <div class="slide orange-wrapper-slide">
             <div class="white-content">
                 <h2>About Me - Ceyda Duzgec</h2>
                 <ul>
@@ -394,14 +427,16 @@
                     <li><strong>Sufle:</strong> AWS Partner in Türkiye - Leading cloud transformation</li>
                     <li><strong>AWS Certified:</strong> Solutions Architect Associate, AI Practitioner</li>
                     <li><strong>HashiCorp Terraform Associate:</strong> Certified</li>
-                    <li><strong>Certified Kubernetes Administrator (CKA):</strong> in progress</li>
-                    <li><strong>Backend Developer:</strong> Background in Python development & microservices</li>
+                    <li><strong>Certified Kubernetes Administrator (CKA):</strong> In progress</li>
+                    <li><strong>Background:</strong> Python development & microservices</li>
                     <li>Master's in Software Engineering from Boğaziçi University</li>
                     <li><strong>This is my first talk at SREday!</strong> 🎉</li>
                 </ul>
-                <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-                <div class="qr-placeholder" style="display: none;">LinkedIn QR Code<br>(Add before talk)</div>
-                <p><strong>Stalk me or connect with me</strong></p>
+                
+                <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="linkedin-qr" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="qr-placeholder linkedin-qr" style="display: none;">LinkedIn QR Code</div>
+                <p class="connect-text">Stalk me or connect with me</p>
+                
                 <img src="images/sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
                 <div class="logo-fallback" style="display: none;">sufle</div>
             </div>
@@ -415,7 +450,7 @@
                     <div class="time-badge">5 mins</div>
                     <div class="agenda-content">
                         <h3>Terraform Refresher</h3>
-                        <p>Quick overview for context (skip if you're advanced)</p>
+                        <p>Quick overview for context</p>
                     </div>
                 </div>
                 <div class="agenda-item">
@@ -449,7 +484,7 @@
             <ul>
                 <li><strong>Infrastructure as Code (IaC):</strong> Define infrastructure using declarative configuration</li>
                 <li><strong>State Management:</strong> Tracks current infrastructure state</li>
-                <li><strong>Providers:</strong> AWS, Azure, GCP, Kubernetes, etc.</li>
+                <li><strong>Providers:</strong> AWS, Azure, GCP, Kubernetes, etc. https://registry.terraform.io/browse/providers</li>
                 <li><strong>Modules:</strong> Reusable infrastructure components</li>
                 <li><strong>Plan & Apply:</strong> Preview changes before execution</li>
             </ul>
