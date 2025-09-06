@@ -114,7 +114,7 @@
         }
 
         ul:not(.no-arrow) li::before {
-            content: "→";
+            content: "→ ";
             position: absolute;
             left: 0;
             color: #3498db;
@@ -213,22 +213,6 @@
             color: #2c3e50;
             backdrop-filter: blur(10px);
         }
-
-        /* .title-slide {
-            background: linear-gradient(135deg, #3498db 0%, #3498db 100%);
-        }
-
-        .title-slide .white-content {
-            background: white;
-            border-radius: 20px;
-            padding: 60px;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        } */
 
         .title-slide {
             background: white;
@@ -407,17 +391,18 @@
                 <h2>About Me - Ceyda Duzgec</h2>
                 <ul>
                     <li><strong>Cloud & Platform Engineer</strong> at Sufle, Istanbul</li>
-                    <li><strong>AWS Partner in Türkiye</strong> - Leading cloud transformation</li>
+                    <li><strong>Sufle:</strong> AWS Partner in Türkiye - Leading cloud transformation</li>
                     <li><strong>AWS Certified:</strong> Solutions Architect Associate, AI Practitioner</li>
-                    <li><strong>HashiCorp Terraform Associate</strong> certified</li>
-                    <li>Background in Python development & microservices</li>
+                    <li><strong>HashiCorp Terraform Associate:</strong> Certified</li>
+                    <li><strong>Certified Kubernetes Administrator (CKA):</strong> in progress</li>
+                    <li><strong>Backend Developer:</strong> Background in Python development & microservices</li>
                     <li>Master's in Software Engineering from Boğaziçi University</li>
                     <li><strong>This is my first talk at SREday!</strong> 🎉</li>
                 </ul>
-                <p style="margin-top: 30px; font-size: 1.2rem;">
-                    <strong>Connect with me:</strong> github.com/ceydaduzgec | linkedin.com/in/ceydaduzgec
-                </p>
-                <img src="sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+                <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+                <div class="qr-placeholder" style="display: none;">LinkedIn QR Code<br>(Add before talk)</div>
+                <p><strong>Stalk me or connect with me</strong></p>
+                <img src="images/sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
                 <div class="logo-fallback" style="display: none;">sufle</div>
             </div>
         </div>
@@ -708,12 +693,12 @@ terraform {
             <h2>Thank You! 🎉</h2>
             <div class="qr-section">
                 <div>
-                    <img src="github-qr.png" alt="GitHub QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/github-qr.png" alt="GitHub QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="qr-placeholder" style="display: none;">GitHub QR Code<br>(Add before talk)</div>
                     <p><strong>Slides & Demo Code</strong></p>
                 </div>
                 <div>
-                    <img src="linkedin-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="qr-placeholder" style="display: none;">LinkedIn QR Code<br>(Add before talk)</div>
                     <p><strong>Connect with me</strong></p>
                 </div>
