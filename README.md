@@ -17,7 +17,7 @@ Hosted on https://ceydaduzgec.github.io/presentations/
 
 - ### DevFest Izmir (07 December 2024)
 **Talk:** *Transfer Your Existing Infrastructure to Terraform*  
-**Resources:** [Recording](https://youtu.be/mCl86MkslBM?si=C9gB3s_sXTR4F5RE) | [Slides](https://ceydaduzgec.github.io/presentations/izmir-devfest-07-12-2024/Transfer%20Your%20Existing%20Infrastructure%20to%20Terraform.pdf)
+**Resources:** [Recording](https://youtu.be/mCl86MkslBM?si=C9gB3s_sXTR4F5RE) | [Slides](https://ceydaduzgec.github.io/presentations/izmir-devfest-07-12-2024/Transfer%20Your%20Existing%20Infrastructure%20%20to%20Terraform.pdf)
 
 - ### Diva AI (13 July 2024)
 **Talk:** *Kubernetes and AI*  
