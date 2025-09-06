@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner's Guide to Terragrunt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 60px;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .about-me-slide {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            padding: 40px;
+        }
+
+        .about-me-slide .white-content {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            color: #3498db;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            color: #e74c3c;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        p, li {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        ul:not(.no-arrow) li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .no-arrow li::before {
+            content: "" !important;
+        }
+
+        ol {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        ol li {
+            counter-increment: step-counter;
+            padding-left: 30px;
+        }
+
+        ol li::before {
+            content: counter(step-counter) ".";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            margin: 30px 0;
+            font-size: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(41, 128, 185, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            backdrop-filter: blur(10px);
+        }
+
+        /* .title-slide {
+            background: linear-gradient(135deg, #3498db 0%, #3498db 100%);
+        }
+
+        .title-slide .white-content {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        } */
+
+        .title-slide {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .title-slide h1 {
+            color: #2c3e50;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: #3498db;
+        }
+
+        .title-slide .name {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .title-slide .event-info {
+            font-size: 1.3rem;
+            color: #3498db;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 1.2rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .demo-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .agenda-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .agenda-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
+
+        .time-badge {
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .agenda-content h3 {
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+            font-size: 1.4rem;
+        }
+
+        .agenda-content p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .demo-note {
+            background: #ffe6e6;
+            border: 2px solid #ff9999;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .qr-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .qr-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .bottom-logo {
+            width: 150px;
+            height: auto;
+            margin-top: 30px;
+        }
+
+        .logo-fallback {
+            width: 150px;
+            height: 60px;
+            background: #FF5722;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">17</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+               <h1>Beginner's Guide to Terragrunt</h1>
+            <p class="subtitle">Simplifying Terraform Infrastructure Management</p>
+            <p class="subtitle">Ceyda Duzgec</p>
+            <p class="event-info">SREday London Q3 2025</p>
+        </div>
+
+        <!-- Slide 2: About Me -->
+        <div class="slide about-me-slide">
+            <div class="white-content">
+                <h2>About Me - Ceyda Duzgec</h2>
+                <ul>
+                    <li><strong>Cloud & Platform Engineer</strong> at Sufle, Istanbul</li>
+                    <li><strong>AWS Partner in Türkiye</strong> - Leading cloud transformation</li>
+                    <li><strong>AWS Certified:</strong> Solutions Architect Associate, AI Practitioner</li>
+                    <li><strong>HashiCorp Terraform Associate</strong> certified</li>
+                    <li>Background in Python development & microservices</li>
+                    <li>Master's in Software Engineering from Boğaziçi University</li>
+                    <li><strong>This is my first talk at SREday!</strong> 🎉</li>
+                </ul>
+                <p style="margin-top: 30px; font-size: 1.2rem;">
+                    <strong>Connect with me:</strong> github.com/ceydaduzgec | linkedin.com/in/ceydaduzgec
+                </p>
+                <img src="sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+                <div class="logo-fallback" style="display: none;">sufle</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Agenda -->
+        <div class="slide">
+            <h2>Agenda (30 minutes)</h2>
+            <div class="agenda-timeline">
+                <div class="agenda-item">
+                    <div class="time-badge">5 mins</div>
+                    <div class="agenda-content">
+                        <h3>Terraform Refresher</h3>
+                        <p>Quick overview for context (skip if you're advanced)</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="time-badge">15 mins</div>
+                    <div class="agenda-content">
+                        <h3>Terragrunt Deep Dive</h3>
+                        <p>Core concepts, configuration, and best practices</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="time-badge">7 mins</div>
+                    <div class="agenda-content">
+                        <h3>Live Demo</h3>
+                        <p>Building a multi-environment setup with Terragrunt</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="time-badge">3 mins</div>
+                    <div class="agenda-content">
+                        <h3>Q&A</h3>
+                        <p>Questions, discussion, and next steps</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Terraform Quick Refresher -->
+        <div class="slide">
+            <h2>Terraform Quick Refresher</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;"><em>Skip this if you're already familiar with Terraform!</em></p>
+            <ul>
+                <li><strong>Infrastructure as Code (IaC):</strong> Define infrastructure using declarative configuration</li>
+                <li><strong>State Management:</strong> Tracks current infrastructure state</li>
+                <li><strong>Providers:</strong> AWS, Azure, GCP, Kubernetes, etc.</li>
+                <li><strong>Modules:</strong> Reusable infrastructure components</li>
+                <li><strong>Plan & Apply:</strong> Preview changes before execution</li>
+            </ul>
+            <div class="code-block">resource "aws_instance" "example" {
+  ami           = "ami-0c02fb55956c7d316"
+  instance_type = "t2.micro"
+  
+  tags = {
+    Name = "example-instance"
+  }
+}</div>
+        </div>
+
+        <!-- Slide 5: What is Terragrunt? -->
+        <div class="slide">
+            <h2>What is Terragrunt?</h2>
+            <p>Terragrunt is a <span class="highlight">thin wrapper</span> around Terraform that provides extra tools for:</p>
+            <ul>
+                <li>Keeping your Terraform configurations DRY (Don't Repeat Yourself)</li>
+                <li>Managing multiple environments and configurations</li>
+                <li>Handling remote state and locking automatically</li>
+                <li>Managing dependencies between Terraform modules</li>
+                <li>Providing additional safety features and workflows</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: The Problem Terragrunt Solves -->
+        <div class="slide">
+            <h2>The Problems with Pure Terraform</h2>
+            <ul>
+                <li><strong>Code Duplication:</strong> Same configurations copied across environments</li>
+                <li><strong>Remote State Management:</strong> Manual backend configuration for each module</li>
+                <li><strong>Environment Management:</strong> No native way to promote configs between envs</li>
+                <li><strong>Dependency Management:</strong> Complex inter-module dependencies</li>
+                <li><strong>Configuration Drift:</strong> Hard to maintain consistency across projects</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: Terraform vs Terragrunt -->
+        <div class="slide">
+            <h2>Terraform vs Terragrunt</h2>
+            <table class="comparison-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Terraform</th>
+                    <th>Terragrunt</th>
+                </tr>
+                <tr>
+                    <td>Configuration</td>
+                    <td>Verbose, repetitive</td>
+                    <td>DRY, reusable</td>
+                </tr>
+                <tr>
+                    <td>Remote State</td>
+                    <td>Manual setup</td>
+                    <td>Automatic generation</td>
+                </tr>
+                <tr>
+                    <td>Multi-Environment</td>
+                    <td>Complex</td>
+                    <td>Built-in support</td>
+                </tr>
+                <tr>
+                    <td>Dependencies</td>
+                    <td>Limited</td>
+                    <td>Advanced dependency management</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Slide 8: Core Concepts -->
+        <div class="slide">
+            <h2>Core Terragrunt Concepts</h2>
+            <ul>
+                <li><strong>terragrunt.hcl:</strong> Configuration file that defines Terragrunt behavior</li>
+                <li><strong>Remote State:</strong> Automatically configured backend storage</li>
+                <li><strong>Inputs:</strong> Variables passed to Terraform modules</li>
+                <li><strong>Dependencies:</strong> Define module execution order</li>
+                <li><strong>Include:</strong> Inherit configuration from parent files</li>
+                <li><strong>Generate:</strong> Create files dynamically (provider configs, etc.)</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: Basic Structure -->
+        <div class="slide">
+            <h2>Typical Terragrunt Project Structure</h2>
+            <div class="code-block">infrastructure/
+├── terragrunt.hcl          # Root configuration
+├── dev/
+│   ├── terragrunt.hcl      # Dev environment config
+│   ├── vpc/
+│   │   └── terragrunt.hcl  # VPC module config
+│   └── app/
+│       └── terragrunt.hcl  # App module config
+├── staging/
+│   └── ... (similar structure)
+└── prod/
+    └── ... (similar structure)</div>
+        </div>
+
+        <!-- Slide 10: Simple Example -->
+        <div class="slide">
+            <h2>Simple Terragrunt Configuration</h2>
+            <div class="code-block"># terragrunt.hcl
+terraform {
+  source = "git::https://github.com/your-org/terraform-modules//vpc"
+}
+
+remote_state {
+  backend = "s3"
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite_terragrunt"
+  }
+  config = {
+    bucket = "your-terraform-state-bucket"
+    key    = "${path_relative_to_include()}/terraform.tfstate"
+    region = "us-west-2"
+  }
+}
+
+inputs = {
+  vpc_cidr             = "10.0.0.0/16"
+  availability_zones   = ["us-west-2a", "us-west-2b"]
+  environment         = "dev"
+}</div>
+        </div>
+
+        <!-- Slide 11: Dependencies -->
+        <div class="slide">
+            <h2>Managing Dependencies</h2>
+            <div class="code-block"># app/terragrunt.hcl
+dependency "vpc" {
+  config_path = "../vpc"
+}
+
+dependency "database" {
+  config_path = "../rds"
+}
+
+inputs = {
+  vpc_id        = dependency.vpc.outputs.vpc_id
+  subnet_ids    = dependency.vpc.outputs.private_subnet_ids
+  db_endpoint   = dependency.database.outputs.endpoint
+  environment   = "dev"
+}</div>
+            <p>Terragrunt automatically handles the execution order!</p>
+        </div>
+
+        <!-- Slide 12: DRY Configuration -->
+        <div class="slide">
+            <h2>DRY Configuration with Include</h2>
+            <div class="code-block"># Root terragrunt.hcl
+remote_state {
+  backend = "s3"
+  config = {
+    bucket = "terraform-state-${get_aws_account_id()}"
+    key    = "${path_relative_to_include()}/terraform.tfstate"
+    region = "us-west-2"
+  }
+}
+
+# Child terragrunt.hcl
+include "root" {
+  path = find_in_parent_folders()
+}
+
+terraform {
+  source = "git::https://github.com/your-org/modules//vpc"
+}</div>
+        </div>
+
+        <!-- Slide 13: Common Commands -->
+        <div class="slide">
+            <h2>Essential Terragrunt Commands</h2>
+            <ul class="no-arrow">
+                <li><code>terragrunt plan</code> → Same as terraform plan, but with Terragrunt features</li>
+                <li><code>terragrunt apply</code> → Apply changes with dependency resolution</li>
+                <li><code>terragrunt run-all plan</code> → Run plan across all modules in directory</li>
+                <li><code>terragrunt run-all apply</code> → Apply all modules in correct order</li>
+                <li><code>terragrunt destroy</code> → Destroy infrastructure</li>
+                <li><code>terragrunt validate</code> → Validate configuration</li>
+                <li><code>terragrunt graph-dependencies</code> → Visualize dependencies</li>
+            </ul>
+        </div>
+
+        <!-- Slide 14: Demo Introduction -->
+        <div class="slide">
+            <h2>Demo Time! 🚀</h2>
+            <div class="demo-note">
+                <p><strong>Demo Gods, please help me!</strong> 🙏</p>
+                <p>You know demos never work as expected...</p>
+            </div>
+            <h3>What we'll build:</h3>
+            <ul>
+                <li>Multi-environment infrastructure (dev/staging/prod)</li>
+                <li>VPC with dependencies</li>
+                <li>Automatic state management</li>
+                <li>DRY configuration principles</li>
+            </ul>
+            <p style="margin-top: 30px;"><em>If the demo fails, we have a backup video! 📹</em></p>
+        </div>
+
+        <!-- Slide 15: Best Practices -->
+        <div class="slide">
+            <h2>Terragrunt Best Practices</h2>
+            <ul>
+                <li><strong>Use remote modules:</strong> Keep Terraform modules in separate repositories</li>
+                <li><strong>Environment separation:</strong> Separate directories for each environment</li>
+                <li><strong>State isolation:</strong> Each module gets its own state file</li>
+                <li><strong>Minimal duplication:</strong> Use include blocks for common configuration</li>
+                <li><strong>Dependency management:</strong> Be explicit about inter-module dependencies</li>
+                <li><strong>Version pinning:</strong> Pin module versions for production</li>
+                <li><strong>Testing:</strong> Use terragrunt plan in CI/CD pipelines</li>
+            </ul>
+        </div>
+
+        <!-- Slide 16: Getting Started -->
+        <div class="slide">
+            <h2>Getting Started Today</h2>
+            <div class="demo-section">
+                <h3>Quick Start Steps:</h3>
+                <ol>
+                    <li><span style="font-weight: bold; color: #3498db;">Install Terragrunt:</span> <code>brew install terragrunt</code></li>
+                    <li><span style="font-weight: bold; color: #3498db;">Create</span> your first <code>terragrunt.hcl</code></li>
+                    <li><span style="font-weight: bold; color: #3498db;">Define</span> remote state configuration</li>
+                    <li><span style="font-weight: bold; color: #3498db;">Add</span> your first module with inputs</li>
+                    <li><span style="font-weight: bold; color: #3498db;">Run</span> <code>terragrunt plan</code> and <code>terragrunt apply</code></li>
+                </ol>
+            </div>
+            <p><strong>Resources:</strong></p>
+            <ul>
+                <li>Official docs: terragrunt.gruntwork.io</li>
+                <li>Example configurations on GitHub</li>
+                <li>Gruntwork's Infrastructure as Code Library</li>
+            </ul>
+        </div>
+
+        <!-- Slide 17: Thank You & Resources -->
+        <div class="slide">
+            <h2>Thank You! 🎉</h2>
+            <div class="qr-section">
+                <div>
+                    <img src="github-qr.png" alt="GitHub QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="qr-placeholder" style="display: none;">GitHub QR Code<br>(Add before talk)</div>
+                    <p><strong>Slides & Demo Code</strong></p>
+                </div>
+                <div>
+                    <img src="linkedin-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="qr-placeholder" style="display: none;">LinkedIn QR Code<br>(Add before talk)</div>
+                    <p><strong>Connect with me</strong></p>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.3rem;">
+                <strong>Questions & Discussion</strong><br>
+                Let's chat about Terragrunt, AWS, or anything cloud! ☁️
+            </p>
+            <p style="margin-top: 20px;">
+                github.com/ceydaduzgec | linkedin.com/in/ceydaduzgec
+            </p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="previousSlide()">Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
