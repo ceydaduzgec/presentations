@@ -69,16 +69,26 @@
 
         h2 {
             font-size: 2.8rem;
-            color: #3498db;
+            color: #2c3e50;
             margin-bottom: 40px;
             font-weight: 600;
         }
 
         h3 {
             font-size: 2.2rem;
-            color: #e74c3c;
+            color: #2c3e50;
             margin-bottom: 30px;
             font-weight: 600;
+        }
+
+        .blue-text {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .env-name {
+            color: #3498db;
+            font-weight: bold;
         }
 
         p, li {
@@ -330,10 +340,11 @@
             border-radius: 10px;
         }
 
-        /* Compact About Me styling */
+        /* About Me slide styling */
         .about-me-slide h2 {
             font-size: 2.2rem;
             margin-bottom: 25px;
+            color: #2c3e50;
         }
 
         .about-me-slide li {
@@ -424,6 +435,7 @@
             .about-me-slide h2 {
                 font-size: 1.8rem;
                 margin-bottom: 20px;
+                color: #2c3e50;
             }
 
             .about-me-slide li {
@@ -555,6 +567,7 @@
 
             .about-me-slide h2 {
                 font-size: 1.5rem;
+                color: #2c3e50;
             }
 
             .about-me-slide li {
@@ -591,7 +604,7 @@
 <body>
     <div class="presentation-container orange-full-background" id="presentation-bg">
         <div class="slide-counter">
-            <span id="current-slide">1</span> / <span id="total-slides">17</span>
+            <span id="current-slide">1</span> / <span id="total-slides">18</span>
         </div>
 
         <!-- Slide 1: Title -->
@@ -610,22 +623,52 @@
                 <div class="qr-placeholder linkedin-qr" style="display: none;">LinkedIn QR Code</div>
                 <p class="connect-text">Stalk me or connect with me</p>
 
-                <ul>
-                    <li><strong>Cloud & Platform Engineer</strong> at Sufle, Istanbul</li>
-                    <li><strong>Sufle:</strong> AWS Partner in Türkiye - Leading cloud transformation</li>
-                    <li><strong>Certified:</strong> AWS Solutions Architect Associate, HashiCorp Terraform Associate</li>
-                    <li><strong>Certified Kubernetes Administrator (CKA):</strong> In progress</li>
-                    <li><strong>Maintainer:</strong> https://github.com/Hipo/university-domains-list</li>
-                    <li><strong>Background:</strong> Bsc in Computer Science & Engineering, MS in Software Engineering</li>
-                    <li><strong>Backend Developer:</strong> Django, a lil bit Flask</li>
+                <ul style="font-size: 1.1rem; line-height: 1.5;">
+                    <li><span class="blue-text">Cloud & Platform Engineer</span> at Sufle, Istanbul</li>
+                    <li><span style="margin-top: 15px; color: #FF5722; font-weight: 600;">Sufle:</span> AWS Partner in Türkiye - Leading cloud transformation</li>
+                    
+                    <li style="margin-top: 15px;"><span class="blue-text">Education:</span>
+                        <ul style="margin-top: 5px; margin-left: 20px;">
+                            <li style="font-size: 1rem; margin-bottom: 3px;">• BSc in Computer Science & Engineering</li>
+                            <li style="font-size: 1rem; margin-bottom: 8px;">• MS in Software Engineering</li>
+                        </ul>
+                    </li>
+                    
+                    <li><span class="blue-text">Certifications:</span>
+                        <ul style="margin-top: 5px; margin-left: 20px;">
+                            <li style="font-size: 1rem; margin-bottom: 3px;">• AWS Solutions Architect Associate</li>
+                            <li style="font-size: 1rem; margin-bottom: 3px;">• HashiCorp Terraform Associate</li>
+                            <li style="font-size: 1rem; margin-bottom: 8px;">• Certified Kubernetes Administrator (CKA) - <em>In progress</em></li>
+                        </ul>
+                    </li>
+                    
+                    <li><span class="blue-text">Open Source:</span> Maintainer of https://github.com/Hipo/university-domains-list</li>
+                    <li><span class="blue-text">Backend Development:</span> Django, a lil bit Flask</li>
                     <li><strong>This is my first talk at SREday!</strong> 🎉</li>
                 </ul>
                 
-                <img src="images/sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-                <div class="logo-fallback" style="display: none;">sufle</div>
+            <img src="images/sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <div class="logo-fallback" style="display: none; font-style: italic;">sufle</div>
         </div>
 
-        <!-- Slide 3: Agenda -->
+        <!-- Slide 3: Opening Question -->
+        <div class="slide">
+            <h2>Quick Question! 🤔</h2>
+            <div style="font-size: 2.5rem; margin: 60px 0; color: #3498db; font-weight: 600;">
+                How do you currently manage your infrastructure across multiple environments?
+            </div>
+            <ul style="font-size: 1.3rem; text-align: left; max-width: 900px; margin: 0 auto;">
+                <li>Copy-paste Terraform configs for dev/staging/prod?</li>
+                <li>Manually manage remote state for each environment?</li>
+                <li>Struggle with keeping configurations in sync?</li>
+                <li>Have dependency issues between modules?</li>
+            </ul>
+            <p style="font-size: 1.4rem; margin-top: 40px; color: #e74c3c; font-weight: 600;">
+                If any of these sound familiar, Terragrunt might be your solution! 🚀
+            </p>
+        </div>
+
+        <!-- Slide 4: Agenda -->
         <div class="slide">
             <h2>Agenda (30 minutes)</h2>
 
@@ -665,18 +708,19 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <!-- Slide 4: Terraform Quick Refresher -->
+        <!-- Slide 5: Terraform Quick Refresher -->
         <div class="slide">
             <h2>Terraform Quick Refresher</h2>
             <p style="font-size: 1.2rem; margin-bottom: 30px;"><em>You might know this if you're already familiar with Terraform!</em></p>
             <ul>
-                <li><strong>Infrastructure as Code (IaC):</strong> Define infrastructure using declarative configuration</li>
-                <li><strong>State Management:</strong> Tracks current infrastructure state</li>
-                <li><strong>Providers:</strong> AWS, Azure, GCP, Kubernetes, etc. https://registry.terraform.io/browse/providers</li>
-                <li><strong>Modules:</strong> Reusable infrastructure components</li>
-                <li><strong>Plan & Apply:</strong> Preview changes before execution</li>
+                <li><span class="blue-text">Infrastructure as Code (IaC):</span> Define infrastructure using declarative configuration</li>
+                <li><span class="blue-text">State Management:</span> Tracks current infrastructure state</li>
+                <li><span class="blue-text">Providers:</span> AWS, Azure, GCP, Kubernetes, etc. https://registry.terraform.io/browse/providers</li>
+                <li><span class="blue-text">Modules:</span> Reusable infrastructure components</li>
+                <li><span class="blue-text">Plan & Apply:</span> Preview changes before execution</li>
             </ul>
             <div class="code-block">resource "aws_instance" "example" {
   ami           = "ami-0c02fb55956c7d316"
@@ -688,32 +732,32 @@
 }</div>
         </div>
 
-        <!-- Slide 5: What is Terragrunt? -->
+        <!-- Slide 6: What is Terragrunt? -->
         <div class="slide">
             <h2>What is Terragrunt?</h2>
             <p>Terragrunt is a <span class="highlight">thin wrapper</span> around Terraform that provides extra tools for:</p>
             <ul>
-                <li>Keeping your Terraform configurations DRY (Don't Repeat Yourself)</li>
-                <li>Managing multiple environments and configurations</li>
-                <li>Handling remote state and locking automatically</li>
-                <li>Managing dependencies between Terraform modules</li>
-                <li>Providing additional safety features and workflows</li>
+                <li><span class="blue-text">Keeping your Terraform configurations DRY</span> (Don't Repeat Yourself)</li>
+                <li><span class="blue-text">Managing multiple environments</span> and configurations</li>
+                <li><span class="blue-text">Handling remote state and locking</span> automatically</li>
+                <li><span class="blue-text">Managing dependencies</span> between Terraform modules</li>
+                <li><span class="blue-text">Providing additional safety features</span> and workflows</li>
             </ul>
         </div>
 
-        <!-- Slide 6: The Problem Terragrunt Solves -->
+        <!-- Slide 7: The Problem Terragrunt Solves -->
         <div class="slide">
             <h2>The Problems with Pure Terraform</h2>
             <ul>
-                <li><strong>Code Duplication:</strong> Same configurations copied across environments</li>
-                <li><strong>Remote State Management:</strong> Manual backend configuration for each module</li>
-                <li><strong>Environment Management:</strong> No native way to promote configs between envs</li>
-                <li><strong>Dependency Management:</strong> Complex inter-module dependencies</li>
-                <li><strong>Configuration Drift:</strong> Hard to maintain consistency across projects</li>
+                <li><span class="blue-text">Code Duplication:</span> Same configurations copied across environments</li>
+                <li><span class="blue-text">Remote State Management:</span> Manual backend configuration for each module</li>
+                <li><span class="blue-text">Environment Management:</span> No native way to promote configs between envs</li>
+                <li><span class="blue-text">Dependency Management:</span> Complex inter-module dependencies</li>
+                <li><span class="blue-text">Configuration Drift:</span> Hard to maintain consistency across projects</li>
             </ul>
         </div>
 
-        <!-- Slide 7: Terraform vs Terragrunt -->
+        <!-- Slide 8: Terraform vs Terragrunt -->
         <div class="slide">
             <h2>Terraform vs Terragrunt</h2>
             <table class="comparison-table">
@@ -745,37 +789,37 @@
             </table>
         </div>
 
-        <!-- Slide 8: Core Concepts -->
+        <!-- Slide 9: Core Concepts -->
         <div class="slide">
             <h2>Core Terragrunt Concepts</h2>
             <ul>
-                <li><strong>terragrunt.hcl:</strong> Configuration file that defines Terragrunt behavior</li>
-                <li><strong>Remote State:</strong> Automatically configured backend storage</li>
-                <li><strong>Inputs:</strong> Variables passed to Terraform modules</li>
-                <li><strong>Dependencies:</strong> Define module execution order</li>
-                <li><strong>Include:</strong> Inherit configuration from parent files</li>
-                <li><strong>Generate:</strong> Create files dynamically (provider configs, etc.)</li>
+                <li><span class="blue-text">terragrunt.hcl:</span> Configuration file that defines Terragrunt behavior</li>
+                <li><span class="blue-text">Remote State:</span> Automatically configured backend storage</li>
+                <li><span class="blue-text">Inputs:</span> Variables passed to Terraform modules</li>
+                <li><span class="blue-text">Dependencies:</span> Define module execution order</li>
+                <li><span class="blue-text">Include:</span> Inherit configuration from parent files</li>
+                <li><span class="blue-text">Generate:</span> Create files dynamically (provider configs, etc.)</li>
             </ul>
         </div>
 
-        <!-- Slide 9: Basic Structure -->
+        <!-- Slide 10: Basic Structure -->
         <div class="slide">
             <h2>Typical Terragrunt Project Structure</h2>
             <div class="code-block">infrastructure/
 ├── terragrunt.hcl          # Root configuration
-├── dev/
+├── <span class="env-name">dev</span>/
 │   ├── terragrunt.hcl      # Dev environment config
 │   ├── vpc/
 │   │   └── terragrunt.hcl  # VPC module config
 │   └── app/
 │       └── terragrunt.hcl  # App module config
-├── staging/
+├── <span class="env-name">staging</span>/
 │   └── ... (similar structure)
-└── prod/
+└── <span class="env-name">prod</span>/
     └── ... (similar structure)</div>
         </div>
 
-        <!-- Slide 10: Simple Example -->
+        <!-- Slide 11: Simple Example -->
         <div class="slide">
             <h2>Simple Terragrunt Configuration</h2>
             <div class="code-block"># terragrunt.hcl
@@ -803,7 +847,7 @@ inputs = {
 }</div>
         </div>
 
-        <!-- Slide 11: Dependencies -->
+        <!-- Slide 12: Dependencies -->
         <div class="slide">
             <h2>Managing Dependencies</h2>
             <div class="code-block"># app/terragrunt.hcl
@@ -824,7 +868,7 @@ inputs = {
             <p>Terragrunt automatically handles the execution order!</p>
         </div>
 
-        <!-- Slide 12: DRY Configuration -->
+        <!-- Slide 13: DRY Configuration -->
         <div class="slide">
             <h2>DRY Configuration with Include</h2>
             <div class="code-block"># Root terragrunt.hcl
@@ -847,21 +891,21 @@ terraform {
 }</div>
         </div>
 
-        <!-- Slide 13: Common Commands -->
+        <!-- Slide 14: Common Commands -->
         <div class="slide">
             <h2>Essential Terragrunt Commands</h2>
             <ul class="no-arrow">
-                <li><code>terragrunt plan</code> → Same as terraform plan, but with Terragrunt features</li>
-                <li><code>terragrunt apply</code> → Apply changes with dependency resolution</li>
-                <li><code>terragrunt run-all plan</code> → Run plan across all modules in directory</li>
-                <li><code>terragrunt run-all apply</code> → Apply all modules in correct order</li>
-                <li><code>terragrunt destroy</code> → Destroy infrastructure</li>
-                <li><code>terragrunt validate</code> → Validate configuration</li>
-                <li><code>terragrunt graph-dependencies</code> → Visualize dependencies</li>
+                <li><code>terragrunt <span class="blue-text">plan</span></code> → Same as terraform plan, but with Terragrunt features</li>
+                <li><code>terragrunt <span class="blue-text">apply</span></code> → Apply changes with dependency resolution</li>
+                <li><code>terragrunt <span class="blue-text">run-all plan</span></code> → Run plan across all modules in directory</li>
+                <li><code>terragrunt <span class="blue-text">run-all apply</span></code> → Apply all modules in correct order</li>
+                <li><code>terragrunt <span class="blue-text">destroy</span></code> → Destroy infrastructure</li>
+                <li><code>terragrunt <span class="blue-text">validate</span></code> → Validate configuration</li>
+                <li><code>terragrunt <span class="blue-text">graph-dependencies</span></code> → Visualize dependencies</li>
             </ul>
         </div>
 
-        <!-- Slide 14: Demo Introduction -->
+        <!-- Slide 15: Demo Introduction -->
         <div class="slide">
             <h2>Demo Time! 🚀</h2>
             <div class="demo-note">
@@ -878,31 +922,31 @@ terraform {
             <p style="margin-top: 30px;"><em>If the demo fails, we have a backup video! 📹</em></p>
         </div>
 
-        <!-- Slide 15: Best Practices -->
+        <!-- Slide 16: Best Practices -->
         <div class="slide">
             <h2>Terragrunt Best Practices</h2>
             <ul>
-                <li><strong>Use remote modules:</strong> Keep Terraform modules in separate repositories</li>
-                <li><strong>Environment separation:</strong> Separate directories for each environment</li>
-                <li><strong>State isolation:</strong> Each module gets its own state file</li>
-                <li><strong>Minimal duplication:</strong> Use include blocks for common configuration</li>
-                <li><strong>Dependency management:</strong> Be explicit about inter-module dependencies</li>
-                <li><strong>Version pinning:</strong> Pin module versions for production</li>
-                <li><strong>Testing:</strong> Use terragrunt plan in CI/CD pipelines</li>
+                <li><span class="blue-text">Use remote modules:</span> Keep Terraform modules in separate repositories</li>
+                <li><span class="blue-text">Environment separation:</span> Separate directories for each environment</li>
+                <li><span class="blue-text">State isolation:</span> Each module gets its own state file</li>
+                <li><span class="blue-text">Minimal duplication:</span> Use include blocks for common configuration</li>
+                <li><span class="blue-text">Dependency management:</span> Be explicit about inter-module dependencies</li>
+                <li><span class="blue-text">Version pinning:</span> Pin module versions for production</li>
+                <li><span class="blue-text">Testing:</span> Use terragrunt plan in CI/CD pipelines</li>
             </ul>
         </div>
 
-        <!-- Slide 16: Getting Started -->
+        <!-- Slide 17: Getting Started -->
         <div class="slide">
             <h2>Getting Started Today</h2>
             <div class="demo-section">
                 <h3>Quick Start Steps:</h3>
                 <ol>
-                    <li><span style="font-weight: bold; color: #3498db;">Install Terragrunt:</span> <code>brew install terragrunt</code></li>
-                    <li><span style="font-weight: bold; color: #3498db;">Create</span> your first <code>terragrunt.hcl</code></li>
-                    <li><span style="font-weight: bold; color: #3498db;">Define</span> remote state configuration</li>
-                    <li><span style="font-weight: bold; color: #3498db;">Add</span> your first module with inputs</li>
-                    <li><span style="font-weight: bold; color: #3498db;">Run</span> <code>terragrunt plan</code> and <code>terragrunt apply</code></li>
+                    <li><span class="blue-text">Install Terragrunt:</span> <code>brew install terragrunt</code></li>
+                    <li><span class="blue-text">Create</span> your first <code>terragrunt.hcl</code></li>
+                    <li><span class="blue-text">Define</span> remote state configuration</li>
+                    <li><span class="blue-text">Add</span> your first module with inputs</li>
+                    <li><span class="blue-text">Run</span> <code>terragrunt plan</code> and <code>terragrunt apply</code></li>
                 </ol>
             </div>
             <p><strong>Resources:</strong></p>
@@ -913,7 +957,25 @@ terraform {
             </ul>
         </div>
 
-        <!-- Slide 17: Thank You & Resources -->
+        <!-- Slide 18: Key Takeaways -->
+        <div class="slide">
+            <h2>Key Takeaways 🎯</h2>
+            <ul style="font-size: 1.3rem; line-height: 1.8;">
+                <li><span class="blue-text">Terragrunt eliminates code duplication</span> across environments</li>
+                <li><span class="blue-text">Automatic remote state management</span> saves time and reduces errors</li>
+                <li><span class="blue-text">Built-in dependency management</span> ensures proper deployment order</li>
+                <li><span class="blue-text">DRY principle</span> makes infrastructure code maintainable</li>
+                <li><span class="blue-text">Easy multi-environment workflows</span> from dev to production</li>
+                <li><span class="blue-text">Works seamlessly</span> with existing Terraform modules</li>
+            </ul>
+            <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 40px 0; border-left: 5px solid #3498db;">
+                <p style="font-size: 1.4rem; margin: 0; color: #2c3e50; font-weight: 600;">
+                    💡 <strong>Bottom Line:</strong> If you're managing multiple environments with Terraform, Terragrunt will save you time, reduce errors, and make your infrastructure code more maintainable.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 19: Thank You & Resources -->
         <div class="slide">
             <h2>Thank You! 🎉</h2>
             <div class="qr-section">
