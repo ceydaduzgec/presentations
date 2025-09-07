@@ -374,6 +374,22 @@
             margin-top: 10px;
         }
 
+        .agenda-qr-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .agenda-qr-section .qr-image {
+            width: 120px;
+            height: 120px;
+        }
+
+        .agenda-qr-section .qr-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+
         /* Mobile Responsive Design */
         @media (max-width: 768px) {
             .slide {
@@ -474,6 +490,12 @@
                 height: 120px;
             }
 
+            .agenda-qr-section .qr-image,
+            .agenda-qr-section .qr-placeholder {
+                width: 100px;
+                height: 100px;
+            }
+
             .linkedin-qr {
                 width: 80px;
                 height: 80px;
@@ -554,6 +576,12 @@
                 height: 70px;
             }
 
+            .agenda-qr-section .qr-image,
+            .agenda-qr-section .qr-placeholder {
+                width: 80px;
+                height: 80px;
+            }
+
             .connect-text {
                 font-size: 0.9rem;
             }
@@ -577,20 +605,21 @@
         <!-- Slide 2: About Me -->
         <div class="slide">
                 <h2>About Me - Ceyda Duzgec</h2>
-                <ul>
-                    <li><strong>Cloud & Platform Engineer</strong> at Sufle, Istanbul</li>
-                    <li><strong>Sufle:</strong> AWS Partner in Türkiye - Leading cloud transformation</li>
-                    <li><strong>AWS Certified:</strong> Solutions Architect Associate, AI Practitioner</li>
-                    <li><strong>HashiCorp Terraform Associate:</strong> Certified</li>
-                    <li><strong>Certified Kubernetes Administrator (CKA):</strong> In progress</li>
-                    <li><strong>Background:</strong> Python development & microservices</li>
-                    <li>Master's in Software Engineering from Boğaziçi University</li>
-                    <li><strong>This is my first talk at SREday!</strong> 🎉</li>
-                </ul>
-                
+
                 <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="linkedin-qr" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="qr-placeholder linkedin-qr" style="display: none;">LinkedIn QR Code</div>
                 <p class="connect-text">Stalk me or connect with me</p>
+
+                <ul>
+                    <li><strong>Cloud & Platform Engineer</strong> at Sufle, Istanbul</li>
+                    <li><strong>Sufle:</strong> AWS Partner in Türkiye - Leading cloud transformation</li>
+                    <li><strong>Certified:</strong> AWS Solutions Architect Associate, HashiCorp Terraform Associate</li>
+                    <li><strong>Certified Kubernetes Administrator (CKA):</strong> In progress</li>
+                    <li><strong>Maintainer:</strong> https://github.com/Hipo/university-domains-list</li>
+                    <li><strong>Background:</strong> Bsc in Computer Science & Engineering, MS in Software Engineering</li>
+                    <li><strong>Backend Developer:</strong> Django, a lil bit Flask</li>
+                    <li><strong>This is my first talk at SREday!</strong> 🎉</li>
+                </ul>
                 
                 <img src="images/sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
                 <div class="logo-fallback" style="display: none;">sufle</div>
@@ -599,6 +628,13 @@
         <!-- Slide 3: Agenda -->
         <div class="slide">
             <h2>Agenda (30 minutes)</h2>
+
+            <div class="agenda-qr-section">
+                <img src="images/presentation-qr.png" alt="Presentation QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="qr-placeholder" style="display: none;">Presentation QR Code</div>
+                <p style="margin-top: 10px; font-size: 1rem; font-weight: 600;">Scan for slides</p>
+            </div>
+
             <div class="agenda-timeline">
                 <div class="agenda-item">
                     <div class="time-badge">5 mins</div>
@@ -885,6 +921,11 @@ terraform {
                     <img src="images/github-qr.png" alt="GitHub QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="qr-placeholder" style="display: none;">GitHub QR Code<br>(Add before talk)</div>
                     <p><strong>Slides & Demo Code</strong></p>
+                </div>
+                <div>
+                    <img src="images/form-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="qr-placeholder" style="display: none;">LinkedIn QR Code<br>(Add before talk)</div>
+                    <p><strong>Feedback or QA form</strong></p>
                 </div>
                 <div>
                     <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
