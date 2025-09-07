@@ -354,8 +354,8 @@
         }
 
         .linkedin-qr {
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             margin: 15px auto 5px auto;
         }
 
@@ -617,38 +617,44 @@
 
         <!-- Slide 2: About Me -->
         <div class="slide">
-                <h2>About Me - Ceyda Duzgec</h2>
-
-                <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="linkedin-qr" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="qr-placeholder linkedin-qr" style="display: none;">LinkedIn QR Code</div>
-                <p class="connect-text">Stalk me or connect with me</p>
-
-                <ul style="font-size: 1.1rem; line-height: 1.5;">
-                    <li><span class="blue-text">Cloud & Platform Engineer</span> at Sufle, Istanbul</li>
-                    <li><span style="margin-top: 15px; color: #FF5722; font-weight: 600;">Sufle:</span> AWS Partner in Türkiye - Leading cloud transformation</li>
-                    
-                    <li style="margin-top: 15px;"><span class="blue-text">Education:</span>
-                        <ul style="margin-top: 5px; margin-left: 20px;">
-                            <li style="font-size: 1rem; margin-bottom: 3px;">• BSc in Computer Science & Engineering</li>
-                            <li style="font-size: 1rem; margin-bottom: 8px;">• MS in Software Engineering</li>
-                        </ul>
-                    </li>
-                    
-                    <li><span class="blue-text">Certifications:</span>
-                        <ul style="margin-top: 5px; margin-left: 20px;">
-                            <li style="font-size: 1rem; margin-bottom: 3px;">• AWS Solutions Architect Associate</li>
-                            <li style="font-size: 1rem; margin-bottom: 3px;">• HashiCorp Terraform Associate</li>
-                            <li style="font-size: 1rem; margin-bottom: 8px;">• Certified Kubernetes Administrator (CKA) - <em>In progress</em></li>
-                        </ul>
-                    </li>
-                    
-                    <li><span class="blue-text">Open Source:</span> Maintainer of https://github.com/Hipo/university-domains-list</li>
-                    <li><span class="blue-text">Backend Development:</span> Django, a lil bit Flask</li>
-                    <li><strong>This is my first talk at SREday!</strong> 🎉</li>
-                </ul>
+            <h2>About Me - Ceyda Duzgec</h2>
+            
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; max-width: 1000px; margin: 0 auto;">
+                <div style="flex: 1; text-align: left;">
+                    <ul style="font-size: 1.1rem; line-height: 1.5;">
+                        <li><span class="blue-text">Cloud & Platform Engineer</span> at Sufle, Istanbul</li>
+                        <li><span style="margin-top: 15px; color: #FF5722; font-weight: 600;">Sufle:</span> AWS Partner in Türkiye - Leading cloud transformation</li>
+                        
+                        <li style="margin-top: 15px;"><span class="blue-text">Education:</span>
+                            <ul style="margin-top: 5px; margin-left: 20px;">
+                                <li style="font-size: 1rem; margin-bottom: 3px;">• BSc in Computer Science & Engineering</li>
+                                <li style="font-size: 1rem; margin-bottom: 8px;">• MS in Software Engineering</li>
+                            </ul>
+                        </li>
+                        
+                        <li><span class="blue-text">Certifications:</span>
+                            <ul style="margin-top: 5px; margin-left: 20px;">
+                                <li style="font-size: 1rem; margin-bottom: 3px;">• AWS Solutions Architect Associate</li>
+                                <li style="font-size: 1rem; margin-bottom: 3px;">• HashiCorp Terraform Associate</li>
+                                <li style="font-size: 1rem; margin-bottom: 8px;">• Certified Kubernetes Administrator (CKA) - <em>In progress</em></li>
+                            </ul>
+                        </li>
+                        
+                        <li><span class="blue-text">Open Source:</span> Maintainer of https://github.com/Hipo/university-domains-list</li>
+                        <li><span class="blue-text">Backend Development:</span> Django, a lil bit Flask</li>
+                        <li><strong>This is my first talk at SREday!</strong> 🎉</li>
+                    </ul>
+                </div>
                 
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="linkedin-qr" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="qr-placeholder linkedin-qr" style="display: none;">LinkedIn QR Code</div>
+                    <p class="connect-text">Stalk me or connect with me</p>
+                </div>
+            </div>
+            
             <img src="images/sufle-logo.jpeg" alt="Sufle Logo" class="bottom-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <div class="logo-fallback" style="display: none; font-style: italic;">sufle</div>
+            <div class="logo-fallback" style="display: none;">sufle</div>
         </div>
 
         <!-- Slide 3: Opening Question -->
@@ -672,40 +678,44 @@
         <div class="slide">
             <h2>Agenda (30 minutes)</h2>
 
-            <div class="agenda-qr-section">
-                <img src="images/presentation-qr.png" alt="Presentation QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="qr-placeholder" style="display: none;">Presentation QR Code</div>
-                <p style="margin-top: 10px; font-size: 1rem; font-weight: 600;">Scan for slides</p>
-            </div>
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; max-width: 1000px; margin: 0 auto;">
+                <div style="flex: 1;">
+                    <div class="agenda-timeline">
+                        <div class="agenda-item">
+                            <div class="time-badge">5 mins</div>
+                            <div class="agenda-content">
+                                <h3>Terraform Refresher</h3>
+                                <p>Quick overview for context</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <div class="time-badge">15 mins</div>
+                            <div class="agenda-content">
+                                <h3>Terragrunt Deep Dive</h3>
+                                <p>Core concepts, configuration, and best practices</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <div class="time-badge">7 mins</div>
+                            <div class="agenda-content">
+                                <h3>Live Demo</h3>
+                                <p>Building a multi-environment setup with Terragrunt</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <div class="time-badge">3 mins</div>
+                            <div class="agenda-content">
+                                <h3>Q&A</h3>
+                                <p>Questions, discussion, and next steps</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="agenda-timeline">
-                <div class="agenda-item">
-                    <div class="time-badge">5 mins</div>
-                    <div class="agenda-content">
-                        <h3>Terraform Refresher</h3>
-                        <p>Quick overview for context</p>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <div class="time-badge">15 mins</div>
-                    <div class="agenda-content">
-                        <h3>Terragrunt Deep Dive</h3>
-                        <p>Core concepts, configuration, and best practices</p>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <div class="time-badge">7 mins</div>
-                    <div class="agenda-content">
-                        <h3>Live Demo</h3>
-                        <p>Building a multi-environment setup with Terragrunt</p>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <div class="time-badge">3 mins</div>
-                    <div class="agenda-content">
-                        <h3>Q&A</h3>
-                        <p>Questions, discussion, and next steps</p>
-                    </div>
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <img src="images/presentation-qr.png" alt="Presentation QR Code" style="width: 200px; height: 200px; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="width: 180px; height: 180px; background: #f0f0f0; border: 2px dashed #ccc; display: none; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.9rem; color: #666;">Presentation QR Code</div>
+                    <p style="margin-top: 10px; font-size: 1rem; font-weight: 600;">Scan for slides</p>
                 </div>
             </div>
 
