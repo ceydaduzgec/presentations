@@ -44,7 +44,6 @@
             display: block;
         }
 
-        /* Override background for about me slide */
         .orange-full-background {
             background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%) !important;
         }
@@ -81,13 +80,33 @@
             font-weight: 600;
         }
 
+        .orange-text {
+            color: #FF5722;
+            font-weight: 600;
+        }
+
         .blue-text {
             color: #3498db;
             font-weight: 600;
         }
 
-        .env-name {
+        .blue-code {
             color: #3498db;
+            font-weight: bold;
+        }
+
+        .pink-code {
+            color: #ce23ec;
+            font-weight: bold;
+        }
+
+        .orange-code {
+            color: #FF5722;
+            font-weight: bold;
+        }
+
+        .green-code {
+            color: #87E911;
             font-weight: bold;
         }
 
@@ -109,6 +128,16 @@
             margin-bottom: 15px;
             padding-left: 25px;
             position: relative;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+            display: none;
+        }
+
+        li.visible {
+            opacity: 1;
+            transform: translateX(0);
+            display: block;
         }
 
         ul:not(.no-arrow) li::before {
@@ -121,6 +150,12 @@
 
         .no-arrow li::before {
             content: "" !important;
+        }
+
+        .about-me-list li {
+            display: block !important;
+            opacity: 1 !important;
+            transform: translateX(0) !important;
         }
 
         ol {
@@ -147,12 +182,13 @@
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
+            border: 2px solid #34495e;
             padding: 25px;
             border-radius: 10px;
             font-family: 'Courier New', monospace;
             text-align: left;
             margin: 30px 0;
-            font-size: 1rem;
+            font-size: 1.1rem;
             overflow-x: auto;
             white-space: pre-wrap;
             line-height: 1.4;
@@ -163,6 +199,68 @@
             padding: 5px 10px;
             border-radius: 5px;
             font-weight: bold;
+        }
+
+        .problem-box {
+            background: #ffe6e6;
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .solution-box {
+            background: #e8f5e8;
+            border-left: 5px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .before-after .before {
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e74c3c;
+        }
+
+        .before-after .after {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #27ae60;
+        }
+
+        .visual-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .diagram-box {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .diagram-arrow {
+            font-size: 2rem;
+            color: #3498db;
+            margin: 0 20px;
         }
 
         .navigation {
@@ -212,25 +310,26 @@
             backdrop-filter: blur(10px);
         }
 
-        .title-slide h1 {
-            color: #2c3e50;
-            font-size: 4rem;
-            margin-bottom: 20px;
+        .reveal-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        .title-slide h2 {
-            color: #2c3e50;
-        }
-
-        .title-slide .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 40px;
-            color: #3498db;
-        }
-
-        .title-slide .event-info {
-            font-size: 1.3rem;
-            color: #555;
+        .reveal-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
         }
 
         .comparison-table {
@@ -257,11 +356,21 @@
             background: #f8f9fa;
         }
 
-        .demo-section {
-            background: #f8f9fa;
-            padding: 30px;
+        .big-question {
+            font-size: 2.5rem;
+            color: #3498db;
+            font-weight: 700;
+            margin: 40px 0;
+            line-height: 1.3;
+        }
+
+        .pain-point {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
             border-radius: 10px;
-            margin: 30px 0;
+            padding: 20px;
+            margin: 15px 0;
+            color: #856404;
         }
 
         .agenda-timeline {
@@ -281,76 +390,6 @@
             background: #f8f9fa;
             border-radius: 10px;
             border-left: 5px solid #3498db;
-        }
-
-        .time-badge {
-            background: #3498db;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            min-width: 80px;
-            text-align: center;
-        }
-
-        .agenda-content h3 {
-            margin: 0 0 5px 0;
-            color: #2c3e50;
-            font-size: 1.4rem;
-        }
-
-        .agenda-content p {
-            margin: 0;
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        .demo-note {
-            background: #ffe6e6;
-            border: 2px solid #ff9999;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            font-style: italic;
-        }
-
-        .qr-section {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 40px 0;
-        }
-
-        .qr-placeholder {
-            width: 150px;
-            height: 150px;
-            background: #f0f0f0;
-            border: 2px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .qr-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 10px;
-        }
-
-        /* About Me slide styling */
-        .about-me-slide h2 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            color: #2c3e50;
-        }
-
-        .about-me-slide li {
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-            line-height: 1.4;
         }
 
         .linkedin-qr {
@@ -385,20 +424,35 @@
             margin-top: 10px;
         }
 
-        .agenda-qr-section {
-            margin-top: 40px;
-            text-align: center;
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            margin: 20px 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
         }
 
-        .agenda-qr-section .qr-image {
-            width: 120px;
-            height: 120px;
+        .s3-structure {
+            background: #e8f4fd;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
         }
 
-        .agenda-qr-section .qr-placeholder {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto;
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #856404;
         }
 
         /* Mobile Responsive Design */
@@ -432,187 +486,42 @@
                 margin-bottom: 12px;
             }
 
-            .about-me-slide h2 {
+            .big-question {
                 font-size: 1.8rem;
-                margin-bottom: 20px;
-                color: #2c3e50;
             }
 
-            .about-me-slide li {
-                font-size: 0.95rem;
-                margin-bottom: 6px;
+            .before-after {
+                grid-template-columns: 1fr;
             }
 
-            .title-slide h1 {
-                font-size: 2.8rem;
-            }
-
-            .title-slide .subtitle {
-                font-size: 1.3rem;
-                margin-bottom: 25px;
-            }
-
-            .title-slide .event-info {
-                font-size: 1rem;
-            }
-
-            .code-block {
-                padding: 15px;
-                font-size: 0.8rem;
-                margin: 20px 0;
-            }
-
-            .comparison-table {
-                font-size: 0.9rem;
-            }
-
-            .comparison-table th,
-            .comparison-table td {
-                padding: 8px;
-            }
-
-            .agenda-item {
-                flex-direction: column;
-                gap: 10px;
-                padding: 15px;
-                text-align: center;
-            }
-
-            .time-badge {
-                min-width: 60px;
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-
-            .agenda-content h3 {
-                font-size: 1.1rem;
-            }
-
-            .agenda-content p {
-                font-size: 0.9rem;
-            }
-
-            .qr-section {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .qr-image, .qr-placeholder {
+            .linkedin-qr {
                 width: 120px;
                 height: 120px;
             }
 
-            .agenda-qr-section .qr-image,
-            .agenda-qr-section .qr-placeholder {
-                width: 100px;
-                height: 100px;
-            }
-
-            .linkedin-qr {
-                width: 80px;
-                height: 80px;
-            }
-
-            .bottom-logo {
-                width: 80px;
-            }
-
-            .logo-fallback {
-                width: 80px;
-                height: 35px;
-                font-size: 1rem;
-            }
-
-            .navigation {
-                bottom: 15px;
-                gap: 15px;
-            }
-
-            .nav-btn {
-                padding: 10px 18px;
-                font-size: 0.9rem;
-            }
-
-            .slide-counter {
-                top: 15px;
+            .reveal-btn {
+                bottom: 80px;
                 right: 15px;
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-
-            .demo-section {
-                padding: 20px;
-                margin: 20px 0;
-            }
-
-            ol li, ul li {
-                padding-left: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slide {
-                width: 98%;
-                padding: 20px 15px;
-                height: 90vh;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.6rem;
-            }
-
-            .about-me-slide h2 {
-                font-size: 1.5rem;
-                color: #2c3e50;
-            }
-
-            .about-me-slide li {
-                font-size: 0.85rem;
-                margin-bottom: 4px;
-            }
-
-            .title-slide h1 {
-                font-size: 2.2rem;
-            }
-
-            .code-block {
-                font-size: 0.7rem;
-                padding: 12px;
-            }
-
-            .linkedin-qr {
-                width: 70px;
-                height: 70px;
-            }
-
-            .agenda-qr-section .qr-image,
-            .agenda-qr-section .qr-placeholder {
-                width: 80px;
-                height: 80px;
-            }
-
-            .connect-text {
+                padding: 10px 16px;
                 font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="presentation-container orange-full-background" id="presentation-bg">
+    <div class="presentation-container" id="presentation-bg">
         <div class="slide-counter">
-            <span id="current-slide">1</span> / <span id="total-slides">18</span>
+            <span id="current-slide">1</span> / <span id="total-slides">21</span>
         </div>
 
         <!-- Slide 1: Title -->
-        <div class="slide active title-slide">
-                <h1>Beginner's Guide to Terragrunt</h1>
-                <p class="subtitle">Simplifying Terraform Infrastructure Management</p>
-                <h2>Ceyda Duzgec</h2>
-                <p class="event-info">SREday London Q3 2025</p>
+        <div class="slide active">
+            <h1>Beginner's Guide to Terragrunt</h1>
+            <p style="font-size: 1.8rem; margin-bottom: 40px; color: #3498db;">
+                Stop the copy-paste madness
+            </p>
+            <h2>Ceyda Duzgec</h2>
+            <p style="font-size: 1.3rem; color: #555;">SREday London Q3 2025</p>
         </div>
 
         <!-- Slide 2: About Me -->
@@ -621,35 +530,34 @@
             
             <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; max-width: 1000px; margin: 0 auto;">
                 <div style="flex: 1; text-align: left;">
-                    <ul style="font-size: 1.1rem; line-height: 1.5;">
+                    <ul style="font-size: 1.1rem; line-height: 1.5;" class="no-arrow about-me-list">
                         <li><span class="blue-text">Cloud & Platform Engineer</span> at Sufle, Istanbul</li>
-                        <li><span style="margin-top: 15px; color: #FF5722; font-weight: 600;">Sufle:</span> AWS Partner in Türkiye - Leading cloud transformation</li>
+                        <li><span class="orange-text">Sufle:</span> AWS Partner in Türkiye - Leading cloud transformation</li>
                         
                         <li style="margin-top: 15px;"><span class="blue-text">Education:</span>
-                            <ul style="margin-top: 5px; margin-left: 20px;">
+                            <ul style="margin-top: 5px; margin-left: 20px;" class="no-arrow about-me-list">
                                 <li style="font-size: 1rem; margin-bottom: 3px;">• BSc in Computer Science & Engineering</li>
                                 <li style="font-size: 1rem; margin-bottom: 8px;">• MS in Software Engineering</li>
                             </ul>
                         </li>
                         
                         <li><span class="blue-text">Certifications:</span>
-                            <ul style="margin-top: 5px; margin-left: 20px;">
+                            <ul style="margin-top: 5px; margin-left: 20px;" class="no-arrow about-me-list">
                                 <li style="font-size: 1rem; margin-bottom: 3px;">• AWS Solutions Architect Associate</li>
                                 <li style="font-size: 1rem; margin-bottom: 3px;">• HashiCorp Terraform Associate</li>
                                 <li style="font-size: 1rem; margin-bottom: 8px;">• Certified Kubernetes Administrator (CKA) - <em>In progress</em></li>
                             </ul>
                         </li>
                         
-                        <li><span class="blue-text">Open Source:</span> Maintainer of https://github.com/Hipo/university-domains-list</li>
-                        <li><span class="blue-text">Backend Development:</span> Django, a lil bit Flask</li>
-                        <li><strong>This is my first talk at SREday!</strong> 🎉</li>
+                        <li><span class="blue-text">Open Source:</span> Maintainer of github.com/Hipo/university-domains-list</li>
+                        <li><strong>This is my first talk at SREday!</strong></li>
                     </ul>
                 </div>
                 
                 <div style="flex: 0 0 auto; text-align: center;">
                     <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="linkedin-qr" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="qr-placeholder linkedin-qr" style="display: none;">LinkedIn QR Code</div>
-                    <p class="connect-text">Stalk me or connect with me</p>
+                    <div style="width: 200px; height: 200px; background: #f0f0f0; border: 2px dashed #ccc; display: none; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.9rem; color: #666;">LinkedIn QR Code</div>
+                    <p class="connect-text">Connect with me</p>
                 </div>
             </div>
             
@@ -657,81 +565,98 @@
             <div class="logo-fallback" style="display: none;">sufle</div>
         </div>
 
-        <!-- Slide 3: Opening Question -->
+        <!-- Slide 3: Monday Morning Scenario -->
         <div class="slide">
-            <h2>Quick Question! 🤔</h2>
-            <div style="font-size: 2.5rem; margin: 60px 0; color: #3498db; font-weight: 600;">
-                How do you currently manage your infrastructure across multiple environments?
+            <h2>Picture This Monday Morning</h2>
+            <div class="pain-point">
+                <h3 style="color: #856404; margin-bottom: 15px;">The Infrastructure Copy-Paste Nightmare</h3>
+                <p style="color: #856404; font-size: 1.2rem; margin-bottom: 10px;">
+                    Your dev environment works perfectly. Now you need staging and production.
+                </p>
             </div>
-            <ul style="font-size: 1.3rem; text-align: left; max-width: 900px; margin: 0 auto;">
-                <li>Copy-paste Terraform configs for dev/staging/prod?</li>
-                <li>Manually manage remote state for each environment?</li>
-                <li>Struggle with keeping configurations in sync?</li>
-                <li>Have dependency issues between modules?</li>
+            
+            <div class="visual-diagram">
+                <div class="diagram-box">
+                    <h4>Dev Environment</h4>
+                    <p>Works perfectly</p>
+                </div>
+                <div class="diagram-arrow">➡️</div>
+                <div class="diagram-box">
+                    <h4>Copy & Paste</h4>
+                    <p>To staging & prod</p>
+                </div>
+                <div class="diagram-arrow">➡️</div>
+                <div class="diagram-box">
+                    <h4>3x the Maintenance</h4>
+                    <p>3x the errors</p>
+                </div>
+            </div>
+            
+            <ul id="scenario-points" style="font-size: 1.3rem; margin-top: 30px;">
+                <li>Copy your entire Terraform directory 3 times</li>
+                <li>Manually change variables in each copy</li>
+                <li>Set up S3 backends for each environment by hand</li>
+                <li>Pray that you didn't miss anything when copying</li>
+                <li>Repeat this process for every new project</li>
             </ul>
+            
             <p style="font-size: 1.4rem; margin-top: 40px; color: #e74c3c; font-weight: 600;">
-                If any of these sound familiar, Terragrunt might be your solution! 🚀
+                Sound familiar? There's a better way.
             </p>
         </div>
 
         <!-- Slide 4: Agenda -->
         <div class="slide">
-            <h2>Agenda (30 minutes)</h2>
+            <h2>What We'll Cover Today</h2>
 
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; max-width: 1000px; margin: 0 auto;">
-                <div style="flex: 1;">
-                    <div class="agenda-timeline">
-                        <div class="agenda-item">
-                            <div class="time-badge">5 mins</div>
-                            <div class="agenda-content">
-                                <h3>Terraform Refresher</h3>
-                                <p>Quick overview for context</p>
-                            </div>
-                        </div>
-                        <div class="agenda-item">
-                            <div class="time-badge">15 mins</div>
-                            <div class="agenda-content">
-                                <h3>Terragrunt Deep Dive</h3>
-                                <p>Core concepts, configuration, and best practices</p>
-                            </div>
-                        </div>
-                        <div class="agenda-item">
-                            <div class="time-badge">7 mins</div>
-                            <div class="agenda-content">
-                                <h3>Live Demo</h3>
-                                <p>Building a multi-environment setup with Terragrunt</p>
-                            </div>
-                        </div>
-                        <div class="agenda-item">
-                            <div class="time-badge">3 mins</div>
-                            <div class="agenda-content">
-                                <h3>Q&A</h3>
-                                <p>Questions, discussion, and next steps</p>
-                            </div>
-                        </div>
+            <div class="agenda-timeline">
+                <div class="agenda-item">
+                    <div class="agenda-content">
+                        <h3>Terraform Quick Refresher</h3>
+                        <p>Context setting for everyone</p>
                     </div>
                 </div>
-
-                <div style="flex: 0 0 auto; text-align: center;">
-                    <img src="images/presentation-qr.png" alt="Presentation QR Code" style="width: 200px; height: 200px; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div style="width: 180px; height: 180px; background: #f0f0f0; border: 2px dashed #ccc; display: none; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.9rem; color: #666;">Presentation QR Code</div>
-                    <p style="margin-top: 10px; font-size: 1rem; font-weight: 600;">Scan for slides</p>
+                <div class="agenda-item">
+                    <div class="agenda-content">
+                        <h3>What is Terragrunt?</h3>
+                        <p>The solution to your infrastructure management problems</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-content">
+                        <h3>Core Concepts & Examples</h3>
+                        <p>Real configurations and practical usage</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-content">
+                        <h3>Getting Started & Best Practices</h3>
+                        <p>Your path forward</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-content">
+                        <h3>Q&A Session</h3>
+                        <p>Questions and discussion</p>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <!-- Slide 5: Terraform Quick Refresher -->
         <div class="slide">
             <h2>Terraform Quick Refresher</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;"><em>You might know this if you're already familiar with Terraform!</em></p>
-            <ul>
-                <li><span class="blue-text">Infrastructure as Code (IaC):</span> Define infrastructure using declarative configuration</li>
-                <li><span class="blue-text">State Management:</span> Tracks current infrastructure state</li>
-                <li><span class="blue-text">Providers:</span> AWS, Azure, GCP, Kubernetes, etc. https://registry.terraform.io/browse/providers</li>
-                <li><span class="blue-text">Modules:</span> Reusable infrastructure components</li>
-                <li><span class="blue-text">Plan & Apply:</span> Preview changes before execution</li>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;"><em>Key concepts you need to understand Terragrunt</em></p>
+            
+            <ul id="terraform-basics">
+                <li><span class="blue-text">Infrastructure as Code (IaC):</span> Define infrastructure using declarative configuration files</li>
+                <li><span class="blue-text">State Management:</span> Terraform tracks your infrastructure in a state file (.tfstate)</li>
+                <li><span class="blue-text">Remote State:</span> Store state files in S3/Azure/GCS for team collaboration</li>
+                <li><span class="blue-text">Modules:</span> Reusable infrastructure components (like functions in programming)</li>
+                <li><span class="blue-text">Environments:</span> Dev, staging, prod - same infrastructure, different configs</li>
+                <li><span class="blue-text">Providers:</span> AWS, Azure, GCP plugins that Terraform uses to manage resources</li>
             </ul>
+            
             <div class="code-block">resource "aws_instance" "example" {
   ami           = "ami-0c02fb55956c7d316"
   instance_type = "t2.micro"
@@ -742,23 +667,26 @@
 }</div>
         </div>
 
-        <!-- Slide 6: What is Terragrunt? -->
-        <div class="slide">
-            <h2>What is Terragrunt?</h2>
-            <p>Terragrunt is a <span class="highlight">thin wrapper</span> around Terraform that provides extra tools for:</p>
-            <ul>
-                <li><span class="blue-text">Keeping your Terraform configurations DRY</span> (Don't Repeat Yourself)</li>
-                <li><span class="blue-text">Managing multiple environments</span> and configurations</li>
-                <li><span class="blue-text">Handling remote state and locking</span> automatically</li>
-                <li><span class="blue-text">Managing dependencies</span> between Terraform modules</li>
-                <li><span class="blue-text">Providing additional safety features</span> and workflows</li>
-            </ul>
-        </div>
-
-        <!-- Slide 7: The Problem Terragrunt Solves -->
+        <!-- Slide 6: The Problems with Pure Terraform -->
         <div class="slide">
             <h2>The Problems with Pure Terraform</h2>
-            <ul>
+            
+            <div class="visual-diagram">
+                <div class="diagram-box" style="background: #ffe6e6; border-color: #e74c3c;">
+                    <h4>Multiple Environments</h4>
+                    <p>Copy-paste everything</p>
+                </div>
+                <div class="diagram-box" style="background: #ffe6e6; border-color: #e74c3c;">
+                    <h4>State Management</h4>
+                    <p>Manual backend setup</p>
+                </div>
+                <div class="diagram-box" style="background: #ffe6e6; border-color: #e74c3c;">
+                    <h4>Dependencies</h4>
+                    <p>Complex inter-module deps</p>
+                </div>
+            </div>
+            
+            <ul id="terraform-problems">
                 <li><span class="blue-text">Code Duplication:</span> Same configurations copied across environments</li>
                 <li><span class="blue-text">Remote State Management:</span> Manual backend configuration for each module</li>
                 <li><span class="blue-text">Environment Management:</span> No native way to promote configs between envs</li>
@@ -767,7 +695,57 @@
             </ul>
         </div>
 
-        <!-- Slide 8: Terraform vs Terragrunt -->
+        <!-- Slide 7: What is Terragrunt? -->
+        <div class="slide">
+            <h2>What is Terragrunt?</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 40px;">
+                Terragrunt is a <span class="highlight">thin wrapper</span> around Terraform that eliminates repetition
+            </p>
+            
+            <div class="solution-box">
+                <h3 style="color: #27ae60; margin-bottom: 15px;">Think of it as Terraform's Smart Assistant</h3>
+                <ul id="terragrunt-benefits" style="color: #27ae60; margin: 0;">
+                    <li>Generates backend configurations automatically</li>
+                    <li>Shares common settings across environments</li>
+                    <li>Manages dependencies between modules</li>
+                    <li>Keeps your code DRY (Don't Repeat Yourself)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Let's Dive Into Terragrunt -->
+        <div class="slide">
+            <h2>Let's Dive Into Terragrunt</h2>
+            
+            <div class="visual-diagram">
+                <div class="diagram-box" style="background: #e8f4fd;">
+                    <h4>terragrunt.hcl</h4>
+                    <p>Configuration file</p>
+                </div>
+                <div class="diagram-arrow">+</div>
+                <div class="diagram-box" style="background: #e8f4fd;">
+                    <h4>Terraform Module</h4>
+                    <p>Reusable infrastructure</p>
+                </div>
+                <div class="diagram-arrow">=</div>
+                <div class="diagram-box" style="background: #e8f5e8;">
+                    <h4>DRY Infrastructure</h4>
+                    <p>Consistent & maintainable</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.4rem; margin: 40px 0;">
+                Terragrunt acts as an orchestrator, managing your Terraform modules across environments
+            </p>
+            
+            <div class="solution-box">
+                <p style="color: #27ae60; font-weight: 600; margin: 0;">
+                    One module definition → Multiple environment deployments
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Terraform vs Terragrunt -->
         <div class="slide">
             <h2>Terraform vs Terragrunt</h2>
             <table class="comparison-table">
@@ -779,30 +757,78 @@
                 <tr>
                     <td>Configuration</td>
                     <td>Verbose, repetitive</td>
-                    <td>DRY, reusable</td>
+                    <td><span class="blue-text">DRY, reusable</span></td>
                 </tr>
                 <tr>
                     <td>Remote State</td>
                     <td>Manual setup</td>
-                    <td>Automatic generation</td>
+                    <td><span class="blue-text">Automatic generation</span></td>
                 </tr>
                 <tr>
                     <td>Multi-Environment</td>
                     <td>Complex</td>
-                    <td>Built-in support</td>
+                    <td><span class="blue-text">Built-in support</span></td>
                 </tr>
                 <tr>
                     <td>Dependencies</td>
                     <td>Limited</td>
-                    <td>Advanced dependency management</td>
+                    <td><span class="blue-text">Advanced dependency management</span></td>
+                </tr>
+                <tr>
+                    <td>Code Maintenance</td>
+                    <td>High effort</td>
+                    <td><span class="blue-text">Minimal effort</span></td>
                 </tr>
             </table>
         </div>
 
-        <!-- Slide 9: Core Concepts -->
+        <!-- Slide 10: Before/After File Structure -->
+        <div class="slide">
+            <h2>Before vs After: File Structure</h2>
+            <div class="before-after">
+                <div class="before">
+                    <h3 style="color: #e74c3c; margin-bottom: 15px;">Before (Pure Terraform)</h3>
+                    <div class="file-structure">dev/
+├── main.tf (300 lines)
+├── variables.tf 
+├── backend.tf
+└── terraform.tfvars
+
+staging/
+├── main.tf (same 300 lines!)
+├── variables.tf 
+├── backend.tf
+└── terraform.tfvars
+
+prod/
+├── main.tf (same 300 lines!)
+├── variables.tf 
+├── backend.tf
+└── terraform.tfvars</div>
+                    <p style="color: #e74c3c; font-weight: 600;">900 lines of duplicate code!</p>
+                </div>
+                
+                <div class="after">
+                    <h3 style="color: #27ae60; margin-bottom: 15px;">After (With Terragrunt)</h3>
+                    <div class="file-structure"><span class="green-code">modules/</span>
+└── <span class="orange-code">vpc/</span>
+    ├── <span class="orange-code">main.tf (300 lines)</span>
+    └── <span class="orange-code">variables.tf</span>
+
+<span class="pink-code">environments/</span>
+├── <span class="blue-code">dev</span>/terragrunt.hcl (10 lines)
+├── <span class="blue-code">staging</span>/terragrunt.hcl (10 lines)
+└── <span class="blue-code">prod</span>/terragrunt.hcl (10 lines)</div>
+                    <p style="color: #27ae60; font-weight: 600;">330 lines total. 70% reduction!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Core Concepts -->
         <div class="slide">
             <h2>Core Terragrunt Concepts</h2>
-            <ul>
+            
+            <ul id="core-concepts">
                 <li><span class="blue-text">terragrunt.hcl:</span> Configuration file that defines Terragrunt behavior</li>
                 <li><span class="blue-text">Remote State:</span> Automatically configured backend storage</li>
                 <li><span class="blue-text">Inputs:</span> Variables passed to Terraform modules</li>
@@ -812,99 +838,142 @@
             </ul>
         </div>
 
-        <!-- Slide 10: Basic Structure -->
+        <!-- Slide 12: Typical Terragrunt Project Structure -->
         <div class="slide">
             <h2>Typical Terragrunt Project Structure</h2>
-            <div class="code-block">infrastructure/
-├── terragrunt.hcl          # Root configuration
-├── <span class="env-name">dev</span>/
-│   ├── terragrunt.hcl      # Dev environment config
-│   ├── vpc/
-│   │   └── terragrunt.hcl  # VPC module config
-│   └── app/
-│       └── terragrunt.hcl  # App module config
-├── <span class="env-name">staging</span>/
-│   └── ... (similar structure)
-└── <span class="env-name">prod</span>/
-    └── ... (similar structure)</div>
+            <p style="margin-bottom: 30px;">Let's see a typical project structure:</p>
+            
+            <div class="file-structure" style="max-width: 800px; margin: 0 auto;">infrastructure/
+│ 
+├── <span class="green-code">modules/</span>
+│   ├── <span class="orange-code">vpc/</span>
+│   │   ├── <span class="orange-code">main.tf</span>
+│   │   └── <span class="orange-code">variables.tf</span>
+│   └── rds/
+│       ├── main.tf
+│       └── variables.tf
+└──<span class="pink-code">environments/</span>
+    ├── <span class="blue-code">dev/</span>
+    │   ├── common_vars.yaml        # Dev common variables
+    │   ├── root.hcl                # Dev environment config
+    │   ├── <span class="orange-code">vpc/</span>
+    │   │   └── <span class="orange-code">terragrunt.hcl</span>      # VPC module config
+    │   └── rds/
+    │       └── terragrunt.hcl      # RDS module config
+    ├── <span class="blue-code">staging/</span>
+    │   ├── common_vars.yaml        # Staging common variables
+    │   ├── root.hcl                # Staging environment config
+    │   ├── <span class="orange-code">vpc/</span>
+    │   │   └── <span class="orange-code">terragrunt.hcl</span>      # ... (similar structure)
+    │   └──  rds/
+    │       └── terragrunt.hcl
+    └── <span class="blue-code">prod/</span>
+        ├── common_vars.yaml        # Production common variables
+        ├── root.hcl                # Production environment config
+        ├── <span class="orange-code">vpc/</span>
+        │   └── <span class="orange-code">terragrunt.hcl</span>      # ... (similar structure)
+        └── rds/
+            └── terragrunt.hcl</div>
         </div>
 
-        <!-- Slide 11: Simple Example -->
+        <!-- Slide 13: Simple Terragrunt Configuration Files -->
         <div class="slide">
             <h2>Simple Terragrunt Configuration</h2>
-            <div class="code-block"># terragrunt.hcl
-terraform {
-  source = "git::https://github.com/your-org/terraform-modules//vpc"
-}
-
-remote_state {
+            <p style="margin-bottom: 20px;">Let's break down the configuration files:</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                <div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 10px;">Root terragrunt.hcl</h3>
+                    <div class="code-block" style="font-size: 0.9rem;">remote_state {
   backend = "s3"
   generate = {
     path      = "backend.tf"
     if_exists = "overwrite_terragrunt"
   }
   config = {
-    bucket = "your-terraform-state-bucket"
+    bucket = <span class="blue-text">"dev-terragrunt-state-bucket"</span>
     key    = "${path_relative_to_include()}/terraform.tfstate"
     region = "us-west-2"
   }
-}
-
-inputs = {
-  vpc_cidr             = "10.0.0.0/16"
-  availability_zones   = ["us-west-2a", "us-west-2b"]
-  environment         = "dev"
 }</div>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 10px;">common_vars.yaml</h3>
+                    <div class="code-block" style="font-size: 0.9rem;"># Common variables for dev environment
+
+<span class="blue-text">environment: "dev"</span>
+region: "us-west-2"
+availability_zones:
+  - "us-west-2a"
+  - "us-west-2b"
+project_name: "my-project"
+tags:
+  <span class="blue-text">Environment: "Dev"</span>
+  Team: "Infrastructure"
+  Project: "MyApp"</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Slide 12: Dependencies -->
+        <!-- Slide 14: Your First Terragrunt Configuration -->
         <div class="slide">
-            <h2>Managing Dependencies</h2>
-            <div class="code-block"># app/terragrunt.hcl
-dependency "vpc" {
+            <h2>Your First Terragrunt Configuration</h2>
+            <p style="margin-bottom: 30px;">Here's what a <code>terragrunt.hcl</code> file looks like:</p>
+            
+            <div class="code-block"><span class="pink-text"># vpc/terragrunt.hcl</span>
+<span class="pink-code">terraform {
+  source = "git::https://github.com/your-org/modules//vpc"
+}</span>
+
+<span class="green-code">include "root" {
+  path = find_in_parent_folders("root.hcl")
+}</span>  
+
+<span class="blue-text">locals {
+  common_vars            = yamldecode(file(find_in_parent_folders("common_vars.yaml")))
+}</span>
+
+inputs = {
+  <span class="orange-text">environment</span>        = <span class="blue-text">local.common_vars.environment</span>
+  <span class="orange-text">vpc_cidr</span>           = "10.0.0.0/16"
+  <span class="orange-text">availability_zones</span> = ["us-west-2a", "us-west-2b"]
+}
+
+# Backend is auto-generated!</div>
+
+            <p style="margin-top: 20px; color: #27ae60; font-weight: 600;">
+                That's it! No backend configuration needed.
+            </p>
+        </div>
+
+        <!-- Slide 15: Dependencies Example -->
+        <div class="slide">
+            <h2>Smart Dependency Management</h2>
+            <p style="margin-bottom: 30px;">Terragrunt knows what order to deploy things:</p>
+            
+            <div class="code-block"># rds/terragrunt.hcl
+<span class="orange-text">dependency "vpc"</span> {
   config_path = "../vpc"
 }
 
-dependency "database" {
-  config_path = "../rds"
-}
-
 inputs = {
-  vpc_id        = dependency.vpc.outputs.vpc_id
-  subnet_ids    = dependency.vpc.outputs.private_subnet_ids
-  db_endpoint   = dependency.database.outputs.endpoint
-  environment   = "dev"
+  vpc_id        = <span class="orange-text">dependency.vpc.outputs.vpc_id</span>
+  subnet_ids    = <span class="orange-text">dependency.vpc.outputs.private_subnet_ids</span>
 }</div>
-            <p>Terragrunt automatically handles the execution order!</p>
+
+            <div class="solution-box">
+                <p style="color: #27ae60; font-weight: 600; margin: 0;">
+                    Terragrunt automatically runs VPC first, then database,!
+                </p>
+            </div>
         </div>
 
-        <!-- Slide 13: DRY Configuration -->
-        <div class="slide">
-            <h2>DRY Configuration with Include</h2>
-            <div class="code-block"># Root terragrunt.hcl
-remote_state {
-  backend = "s3"
-  config = {
-    bucket = "terraform-state-${get_aws_account_id()}"
-    key    = "${path_relative_to_include()}/terraform.tfstate"
-    region = "us-west-2"
-  }
-}
-
-# Child terragrunt.hcl
-include "root" {
-  path = find_in_parent_folders()
-}
-
-terraform {
-  source = "git::https://github.com/your-org/modules//vpc"
-}</div>
-        </div>
-
-        <!-- Slide 14: Common Commands -->
+        <!-- Slide 16: Essential Commands -->
         <div class="slide">
             <h2>Essential Terragrunt Commands</h2>
-            <ul class="no-arrow">
+            
+            <ul id="terragrunt-commands" class="no-arrow">
                 <li><code>terragrunt <span class="blue-text">plan</span></code> → Same as terraform plan, but with Terragrunt features</li>
                 <li><code>terragrunt <span class="blue-text">apply</span></code> → Apply changes with dependency resolution</li>
                 <li><code>terragrunt <span class="blue-text">run-all plan</span></code> → Run plan across all modules in directory</li>
@@ -915,69 +984,115 @@ terraform {
             </ul>
         </div>
 
-        <!-- Slide 15: Demo Introduction -->
+        <!-- Slide 17: S3 State Structure -->
         <div class="slide">
-            <h2>Demo Time! 🚀</h2>
-            <div class="demo-note">
-                <p><strong>Demo Gods, please help me!</strong> 🙏</p>
-                <p>You know demos never work as expected...</p>
+            <h2>Automatic S3 State Management</h2>
+            <p style="margin-bottom: 20px;">Terragrunt automatically organizes your state files:</p>
+            
+            <div class="s3-structure">
+                <h3 style="color: #3498db; margin-bottom: 20px;">S3 Bucket Structure</h3>
+                <div class="file-structure">terragrunt-state-bucket/
+├── dev/
+│   ├── vpc/terraform.tfstate
+│   ├── rds/terraform.tfstate
+│   └── app/terraform.tfstate
+├── staging/
+│   ├── vpc/terraform.tfstate
+│   ├── rds/terraform.tfstate
+│   └── app/terraform.tfstate
+└── prod/
+    ├── vpc/terraform.tfstate
+    ├── rds/terraform.tfstate
+    └── app/terraform.tfstate</div>
             </div>
-            <h3>What we'll build:</h3>
-            <ul>
-                <li>Multi-environment infrastructure (dev/staging/prod)</li>
-                <li>VPC with dependencies</li>
-                <li>Automatic state management</li>
-                <li>DRY configuration principles</li>
-            </ul>
-            <p style="margin-top: 30px;"><em>If the demo fails, we have a backup video! 📹</em></p>
+            
+            <div class="visual-diagram">
+                <div class="diagram-box" style="background: #e8f4fd;">
+                    <h4>Isolated State</h4>
+                    <p>Each module gets its own state file</p>
+                </div>
+                <div class="diagram-box" style="background: #e8f4fd;">
+                    <h4>Environment Separation</h4>
+                    <p>Clear boundaries between dev/staging/prod</p>
+                </div>
+                <div class="diagram-box" style="background: #e8f4fd;">
+                    <h4>Automatic Paths</h4>
+                    <p>No manual backend configuration</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Slide 16: Best Practices -->
+        <!-- Slide 18: When You Might Skip Terragrunt -->
         <div class="slide">
-            <h2>Terragrunt Best Practices</h2>
-            <ul>
-                <li><span class="blue-text">Use remote modules:</span> Keep Terraform modules in separate repositories</li>
-                <li><span class="blue-text">Environment separation:</span> Separate directories for each environment</li>
-                <li><span class="blue-text">State isolation:</span> Each module gets its own state file</li>
-                <li><span class="blue-text">Minimal duplication:</span> Use include blocks for common configuration</li>
-                <li><span class="blue-text">Dependency management:</span> Be explicit about inter-module dependencies</li>
-                <li><span class="blue-text">Version pinning:</span> Pin module versions for production</li>
-                <li><span class="blue-text">Testing:</span> Use terragrunt plan in CI/CD pipelines</li>
+            <h2>When You Might Skip Terragrunt</h2>
+            
+            <ul id="skip-terragrunt">
+                <li><span class="blue-text">Single Environment:</span> If you only have one environment and no plans to expand</li>
+                <li><span class="blue-text">Simple Setups:</span> Very basic infrastructure with no module dependencies</li>
+                <li><span class="blue-text">Team Learning:</span> If your team is still learning basic Terraform</li>
+                <li><span class="blue-text">CI/CD Constraints:</span> Some CI/CD systems work better with plain Terraform</li>
+                <li><span class="blue-text">Quick Prototypes:</span> When you need to spin up something quickly for testing</li>
             </ul>
+            
+            <div class="warning-box">
+                <p style="color: #856404; font-weight: 600; margin: 0;">
+                    Remember: You can always add Terragrunt later when your infrastructure grows!
+                </p>
+            </div>
         </div>
 
-        <!-- Slide 17: Getting Started -->
+        <!-- Slide 19: Getting Started Today -->
         <div class="slide">
             <h2>Getting Started Today</h2>
-            <div class="demo-section">
-                <h3>Quick Start Steps:</h3>
-                <ol>
-                    <li><span class="blue-text">Install Terragrunt:</span> <code>brew install terragrunt</code></li>
+            
+            <div class="visual-diagram">
+                <div class="diagram-box" style="background: #e8f5e8;">
+                    <h4>Step 1</h4>
+                    <p>Install Terragrunt</p>
+                </div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-box" style="background: #e8f5e8;">
+                    <h4>Step 2</h4>
+                    <p>Create terragrunt.hcl</p>
+                </div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-box" style="background: #e8f5e8;">
+                    <h4>Step 3</h4>
+                    <p>Run terragrunt plan</p>
+                </div>
+            </div>
+            
+            <div class="solution-box">
+                <h3 style="color: #27ae60; margin-bottom: 15px;">Quick Start Steps:</h3>
+                <ol id="getting-started-steps">
+                    <li><span class="blue-text">Install:</span> <code>brew install terragrunt</code></li>
                     <li><span class="blue-text">Create</span> your first <code>terragrunt.hcl</code></li>
-                    <li><span class="blue-text">Define</span> remote state configuration</li>
-                    <li><span class="blue-text">Add</span> your first module with inputs</li>
-                    <li><span class="blue-text">Run</span> <code>terragrunt plan</code> and <code>terragrunt apply</code></li>
+                    <li><span class="blue-text">Point</span> to an existing Terraform module</li>
+                    <li><span class="blue-text">Run:</span> <code>terragrunt plan</code></li>
+                    <li><span class="blue-text">Deploy:</span> <code>terragrunt apply</code></li>
                 </ol>
             </div>
-            <p><strong>Resources:</strong></p>
-            <ul>
-                <li>Official docs: terragrunt.gruntwork.io</li>
-                <li>Example configurations on GitHub</li>
-                <li>Gruntwork's Infrastructure as Code Library</li>
-            </ul>
+            
+            <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                <p style="color: #27ae60; font-weight: 600; margin: 0;">
+                    You can add Terragrunt to existing Terraform projects incrementally!
+                </p>
+            </div>
         </div>
 
-        <!-- Slide 18: Key Takeaways -->
+        <!-- Slide 20: Key Takeaways -->
         <div class="slide">
-            <h2>Key Takeaways 🎯</h2>
-            <ul style="font-size: 1.3rem; line-height: 1.8;">
-                <li><span class="blue-text">Terragrunt eliminates code duplication</span> across environments</li>
-                <li><span class="blue-text">Automatic remote state management</span> saves time and reduces errors</li>
-                <li><span class="blue-text">Built-in dependency management</span> ensures proper deployment order</li>
-                <li><span class="blue-text">DRY principle</span> makes infrastructure code maintainable</li>
-                <li><span class="blue-text">Easy multi-environment workflows</span> from dev to production</li>
+            <h2>Key Takeaways</h2>
+            
+            <ul id="key-takeaways" style="font-size: 1.3rem; line-height: 1.8;">
+                <li><span class="blue-text">Stop copy-pasting</span> Terraform configurations between environments</li>
+                <li><span class="blue-text">Terragrunt generates backends</span> automatically - no more manual S3 setup</li>
+                <li><span class="blue-text">Dependencies are handled</span> automatically - correct deployment order</li>
+                <li><span class="blue-text">Start small</span> - add it to one environment first</li>
+                <li><span class="blue-text">70% code reduction</span> in typical multi-environment setups</li>
                 <li><span class="blue-text">Works seamlessly</span> with existing Terraform modules</li>
             </ul>
+            
             <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 40px 0; border-left: 5px solid #3498db;">
                 <p style="font-size: 1.4rem; margin: 0; color: #2c3e50; font-weight: 600;">
                     💡 <strong>Bottom Line:</strong> If you're managing multiple environments with Terraform, Terragrunt will save you time, reduce errors, and make your infrastructure code more maintainable.
@@ -985,33 +1100,34 @@ terraform {
             </div>
         </div>
 
-        <!-- Slide 19: Thank You & Resources -->
+        <!-- Slide 21: Thank You -->
         <div class="slide">
-            <h2>Thank You! 🎉</h2>
-            <div class="qr-section">
-                <div>
-                    <img src="images/github-qr.png" alt="GitHub QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="qr-placeholder" style="display: none;">GitHub QR Code<br>(Add before talk)</div>
-                    <p><strong>Slides & Demo Code</strong></p>
+            <h2>Thank You!</h2>
+            
+            <div style="display: flex; justify-content: space-around; align-items: center; margin: 40px 0;">
+                <div style="text-align: center;">
+                    <div style="width: 150px; height: 150px; background: #f0f0f0; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.9rem; color: #666; margin: 0 auto;">GitHub QR Code</div>
+                    <p style="margin-top: 10px;"><strong>Slides & Examples</strong></p>
                 </div>
-                <div>
-                    <img src="images/form-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="qr-placeholder" style="display: none;">LinkedIn QR Code<br>(Add before talk)</div>
-                    <p><strong>Feedback or QA form</strong></p>
+                <div style="text-align: center;">
+                    <div style="width: 150px; height: 150px; background: #f0f0f0; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.9rem; color: #666; margin: 0 auto;">LinkedIn QR Code</div>
+                    <p style="margin-top: 10px;"><strong>Connect with me</strong></p>
                 </div>
-                <div>
-                    <img src="images/linkedin-qr.png" alt="LinkedIn QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="qr-placeholder" style="display: none;">LinkedIn QR Code<br>(Add before talk)</div>
-                    <p><strong>Connect with me</strong></p>
+                <div style="text-align: center;">
+                    <div style="width: 150px; height: 150px; background: #f0f0f0; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.9rem; color: #666; margin: 0 auto;">Feedback QR Code</div>
+                    <p style="margin-top: 10px;"><strong>Feedback Form</strong></p>
                 </div>
             </div>
-            <p style="margin-top: 40px; font-size: 1.3rem;">
-                <strong>Questions & Discussion</strong><br>
-                Let's chat about Terragrunt, AWS, or anything cloud! ☁️
-            </p>
-            <p style="margin-top: 20px;">
-                github.com/ceydaduzgec | linkedin.com/in/ceydaduzgec
-            </p>
+            
+            <div style="margin-top: 40px;">
+                <h3 style="color: #3498db;">Questions?</h3>
+                <p style="font-size: 1.2rem; margin-top: 20px;">
+                    Let's chat about Terragrunt, AWS, or infrastructure automation!
+                </p>
+                <p style="margin-top: 15px; font-size: 1rem;">
+                    github.com/ceydaduzgec | linkedin.com/in/ceydaduzgec
+                </p>
+            </div>
         </div>
     </div>
 
@@ -1024,6 +1140,8 @@ terraform {
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
+        let currentRevealList = null;
+        let currentRevealIndex = 0;
 
         document.getElementById('total-slides').textContent = totalSlides;
 
@@ -1047,6 +1165,9 @@ terraform {
             // Update navigation buttons
             document.getElementById('prev-btn').disabled = currentSlide === 0;
             document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+            
+            // Check if current slide has bullet points to reveal
+            setupRevealButton();
         }
 
         function nextSlide() {
@@ -1058,6 +1179,68 @@ terraform {
         function previousSlide() {
             if (currentSlide > 0) {
                 showSlide(currentSlide - 1);
+            }
+        }
+
+        function setupRevealButton() {
+            // Remove existing reveal button
+            const existingBtn = document.querySelector('.reveal-btn');
+            if (existingBtn) {
+                existingBtn.remove();
+            }
+            
+            // Check if current slide has lists to reveal
+            const activeSlide = slides[currentSlide];
+            const revealableLists = activeSlide.querySelectorAll('#scenario-points, #terraform-basics, #terraform-problems, #terragrunt-benefits, #core-concepts, #terragrunt-commands, #skip-terragrunt, #getting-started-steps, #key-takeaways');
+            
+            if (revealableLists.length > 0) {
+                const listId = revealableLists[0].id;
+                const button = document.createElement('button');
+                button.className = 'reveal-btn';
+                button.textContent = getButtonText(listId);
+                button.onclick = () => revealPoints(listId);
+                document.body.appendChild(button);
+            }
+            
+            currentRevealList = null;
+            currentRevealIndex = 0;
+        }
+
+        function getButtonText(listId) {
+            const buttonTexts = {
+                'scenario-points': 'Show Reality Check',
+                'terraform-basics': 'Show Terraform Concepts',
+                'terraform-problems': 'Show Problems',
+                'terragrunt-benefits': 'Show Benefits',
+                'core-concepts': 'Show Concepts',
+                'terragrunt-commands': 'Show Commands',
+                'skip-terragrunt': 'Show Considerations',
+                'getting-started-steps': 'Show Steps',
+                'key-takeaways': 'Show Takeaways'
+            };
+            return buttonTexts[listId] || 'Show Points';
+        }
+
+        function revealPoints(listId) {
+            const listItems = document.querySelectorAll(`#${listId} li`);
+            const button = document.querySelector('.reveal-btn');
+            
+            if (currentRevealList !== listId) {
+                currentRevealList = listId;
+                currentRevealIndex = 0;
+            }
+            
+            if (currentRevealIndex < listItems.length) {
+                listItems[currentRevealIndex].classList.add('visible');
+                currentRevealIndex++;
+                
+                if (button) {
+                    if (currentRevealIndex < listItems.length) {
+                        button.textContent = 'Next';
+                    } else {
+                        button.style.display = 'none';
+                    }
+                }
             }
         }
 
