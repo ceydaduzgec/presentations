@@ -110,6 +110,10 @@
             font-weight: bold;
         }
 
+        .pink-text {
+            color: #ce23ec;
+        }
+
         p, li {
             font-size: 1.4rem;
             line-height: 1.6;
@@ -263,6 +267,46 @@
             margin: 0 20px;
         }
 
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(41, 128, 185, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+
         .slide-counter {
             position: fixed;
             top: 30px;
@@ -277,24 +321,16 @@
 
         .enter-hint {
             position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(52, 152, 219, 0.9);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 1rem;
+            top: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.9);
+            color: #2c3e50;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-size: 0.9rem;
             font-weight: 600;
             backdrop-filter: blur(10px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+            z-index: 1000;
         }
 
         .comparison-table {
@@ -422,6 +458,21 @@
 
         /* Mobile Responsive Design */
         @media (max-width: 768px) {
+            .enter-hint {
+                display: none;
+            }
+            
+            .navigation {
+                bottom: 20px;
+                display: flex;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+                min-width: 100px;
+            }
+
             .slide {
                 width: 95%;
                 padding: 30px 20px;
@@ -464,6 +515,13 @@
                 height: 120px;
             }
         }
+
+        /* Hide buttons on desktop, show hint */
+        @media (min-width: 769px) {
+            .navigation {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -474,6 +532,10 @@
 
         <div class="enter-hint" id="enter-hint">
             Press ENTER to advance
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" id="action-btn">Next</button>
         </div>
 
         <!-- Slide 1: Title -->
@@ -930,7 +992,7 @@ inputs = {
 
             <div class="solution-box">
                 <p style="color: #27ae60; font-weight: 600; margin: 0;">
-                    Terragrunt automatically runs VPC first, then database,!
+                    Terragrunt automatically runs VPC first, then database!
                 </p>
             </div>
         </div>
@@ -1099,24 +1161,30 @@ inputs = {
     </div>
 
     <script>
+        // Global variables
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
-        let slideStates = {}; // Track which slides have been revealed
+        let slideStates = {};
 
-        document.getElementById('total-slides').textContent = totalSlides;
+        // Initialize everything when the page loads
+        function initializePresentation() {
+            document.getElementById('total-slides').textContent = totalSlides;
 
-        // Initialize slide states
-        slides.forEach((slide, index) => {
-            const revealableList = slide.querySelector('#scenario-points, #terraform-basics, #terraform-problems, #terragrunt-benefits, #core-concepts, #terragrunt-commands, #skip-terragrunt, #getting-started-steps, #key-takeaways');
-            slideStates[index] = {
-                hasRevealableContent: !!revealableList,
-                isRevealed: false,
-                listId: revealableList ? revealableList.id : null,
-                currentPointIndex: 0,
-                totalPoints: revealableList ? revealableList.querySelectorAll('li').length : 0
-            };
-        });
+            // Initialize slide states
+            slides.forEach((slide, index) => {
+                const revealableList = slide.querySelector('#scenario-points, #terraform-basics, #terraform-problems, #terragrunt-benefits, #core-concepts, #terragrunt-commands, #skip-terragrunt, #getting-started-steps, #key-takeaways');
+                slideStates[index] = {
+                    hasRevealableContent: !!revealableList,
+                    isRevealed: false,
+                    listId: revealableList ? revealableList.id : null,
+                    currentPointIndex: 0,
+                    totalPoints: revealableList ? revealableList.querySelectorAll('li').length : 0
+                };
+            });
+
+            showSlide(0);
+        }
 
         function updateBackground() {
             const presentationBg = document.getElementById('presentation-bg');
@@ -1124,6 +1192,33 @@ inputs = {
                 presentationBg.classList.add('orange-full-background');
             } else {
                 presentationBg.classList.remove('orange-full-background');
+            }
+        }
+
+        function updateUI() {
+            // Update hint text
+            const hint = document.getElementById('enter-hint');
+            const button = document.getElementById('action-btn');
+            const state = slideStates[currentSlide];
+            
+            if (state && state.hasRevealableContent && !state.isRevealed) {
+                const remaining = state.totalPoints - state.currentPointIndex;
+                if (remaining > 0) {
+                    hint.textContent = `Press ENTER to show next point (${remaining} remaining)`;
+                    button.textContent = `Show Point (${remaining})`;
+                } else {
+                    hint.textContent = 'Press ENTER for next slide';
+                    button.textContent = 'Next Slide';
+                }
+                button.disabled = false;
+            } else if (currentSlide < totalSlides - 1) {
+                hint.textContent = 'Press ENTER for next slide';
+                button.textContent = 'Next Slide';
+                button.disabled = false;
+            } else {
+                hint.textContent = 'End of presentation';
+                button.textContent = 'End';
+                button.disabled = true;
             }
         }
 
@@ -1137,33 +1232,14 @@ inputs = {
             
             // Reset points for new slide
             const state = slideStates[currentSlide];
-            if (state.hasRevealableContent && state.listId) {
+            if (state && state.hasRevealableContent && state.listId) {
                 const listItems = document.querySelectorAll(`#${state.listId} li`);
                 listItems.forEach(item => item.classList.remove('visible'));
                 state.currentPointIndex = 0;
                 state.isRevealed = false;
             }
             
-            updateHintText();
-        }
-
-        function updateHintText() {
-            const hint = document.getElementById('enter-hint');
-            const state = slideStates[currentSlide];
-            
-            if (state && state.hasRevealableContent && !state.isRevealed) {
-                const remaining = state.totalPoints - state.currentPointIndex;
-                if (remaining > 0) {
-                    hint.textContent = `Press ENTER to show next point (${remaining} remaining)`;
-                }
-                else {
-                    hint.textContent = 'Press ENTER for next slide';
-                }
-            } else if (currentSlide < totalSlides - 1) {
-                hint.textContent = 'Press ENTER for next slide';
-            } else {
-                hint.textContent = 'End of presentation';
-            }
+            updateUI();
         }
 
         function revealNextPoint(listId) {
@@ -1181,10 +1257,10 @@ inputs = {
                 }
             }
             
-            updateHintText();
+            updateUI();
         }
 
-        function handleEnterPress() {
+        function advance() {
             const state = slideStates[currentSlide];
             
             if (state && state.hasRevealableContent && !state.isRevealed) {
@@ -1194,19 +1270,35 @@ inputs = {
                 // Move to next slide
                 showSlide(currentSlide + 1);
             }
-            // If at last slide with all content revealed, do nothing
         }
 
-        // Keyboard navigation - only Enter key
+        // Event listeners
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
-                e.preventDefault(); // Prevent default Enter behavior
-                handleEnterPress();
+                e.preventDefault();
+                advance();
             }
         });
 
-        // Initialize
-        showSlide(0);
+        // Button click handler
+        document.getElementById('action-btn').addEventListener('click', advance);
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializePresentation);
     </script>
 </body>
-</html>
+</html>: #e74c3c; font-weight: 600;">900 lines of duplicate code!</p>
+                </div>
+                
+                <div class="after">
+                    <h3 style="color: #27ae60; margin-bottom: 15px;">After (With Terragrunt)</h3>
+                    <div class="file-structure"><span class="green-code">modules/</span>
+└── <span class="orange-code">vpc/</span>
+    ├── <span class="orange-code">main.tf (300 lines)</span>
+    └── <span class="orange-code">variables.tf</span>
+
+<span class="pink-code">environments/</span>
+├── <span class="blue-code">dev</span>/terragrunt.hcl (10 lines)
+├── <span class="blue-code">staging</span>/terragrunt.hcl (10 lines)
+└── <span class="blue-code">prod</span>/terragrunt.hcl (10 lines)</div>
+                    <p style="color
