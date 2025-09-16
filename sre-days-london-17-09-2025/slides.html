@@ -393,6 +393,28 @@
             border-left: 5px solid #3498db;
         }
 
+        .time-badge {
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .agenda-content h3 {
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+            font-size: 1.4rem;
+        }
+
+        .agenda-content p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
         .qr-code {
             width: 200px;
             height: 200px;
@@ -635,38 +657,48 @@
 
         <!-- Slide 4: Agenda -->
         <div class="slide">
-            <h2>What We'll Cover Today</h2>
+            <h2>What We'll Cover (25 minutes)</h2>
 
-            <div class="agenda-timeline">
-                <div class="agenda-item">
-                    <div class="agenda-content">
-                        <h3>Terraform Quick Refresher</h3>
-                        <p>Context setting for everyone</p>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <div class="agenda-content">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; max-width: 1000px; margin: 0 auto;">
+                <div style="flex: 1;">
+                    <div class="agenda-timeline">
+                        <div class="agenda-item">
+                            <div class="agenda-content">
+                                <h3>Terraform Quick Refresher</h3>
+                                <p>Context setting for everyone</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <div class="agenda-content">
                         <h3>What is Terragrunt?</h3>
                         <p>The solution to your infrastructure management problems</p>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <div class="agenda-content">
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <div class="agenda-content">
                         <h3>Core Concepts & Examples</h3>
                         <p>Real configurations and practical usage</p>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <div class="agenda-content">
-                        <h3>Getting Started & Best Practices</h3>
-                        <p>Your path forward</p>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <div class="agenda-content">
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <div class="agenda-content">
+                        <h3>Getting Started</h3>
+                        <p>Path forward</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <div class="agenda-content">
                         <h3>Q&A Session</h3>
                         <p>Questions and discussion</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <img src="images/slide-qr.png" alt="Presentation QR Code" style="width: 180px; height: 180px; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="width: 180px; height: 180px; background: #f0f0f0; border: 2px dashed #ccc; display: none; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.9rem; color: #666;">Presentation QR Code</div>
+                    <p style="margin-top: 10px; font-size: 1rem; font-weight: 600;">Scan for slides</p>
                 </div>
             </div>
         </div>
