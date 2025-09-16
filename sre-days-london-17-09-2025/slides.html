@@ -263,41 +263,6 @@
             margin: 0 20px;
         }
 
-        .navigation {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        .nav-btn {
-            padding: 12px 24px;
-            background: rgba(52, 152, 219, 0.9);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-btn:hover {
-            background: rgba(41, 128, 185, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
         .slide-counter {
             position: fixed;
             top: 30px;
@@ -310,26 +275,26 @@
             backdrop-filter: blur(10px);
         }
 
-        .reveal-btn {
+        .enter-hint {
             position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: #3498db;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(52, 152, 219, 0.9);
             color: white;
-            border: none;
-            padding: 12px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
-            cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
-            z-index: 1000;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
         }
 
-        .reveal-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
         }
 
         .comparison-table {
@@ -498,13 +463,6 @@
                 width: 120px;
                 height: 120px;
             }
-
-            .reveal-btn {
-                bottom: 80px;
-                right: 15px;
-                padding: 10px 16px;
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
@@ -512,6 +470,10 @@
     <div class="presentation-container" id="presentation-bg">
         <div class="slide-counter">
             <span id="current-slide">1</span> / <span id="total-slides">21</span>
+        </div>
+
+        <div class="enter-hint" id="enter-hint">
+            Press ENTER to advance
         </div>
 
         <!-- Slide 1: Title -->
@@ -1136,19 +1098,25 @@ inputs = {
         </div>
     </div>
 
-    <div class="navigation">
-        <button class="nav-btn" id="prev-btn" onclick="previousSlide()">Previous</button>
-        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next</button>
-    </div>
-
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
-        let currentRevealList = null;
-        let currentRevealIndex = 0;
+        let slideStates = {}; // Track which slides have been revealed
 
         document.getElementById('total-slides').textContent = totalSlides;
+
+        // Initialize slide states
+        slides.forEach((slide, index) => {
+            const revealableList = slide.querySelector('#scenario-points, #terraform-basics, #terraform-problems, #terragrunt-benefits, #core-concepts, #terragrunt-commands, #skip-terragrunt, #getting-started-steps, #key-takeaways');
+            slideStates[index] = {
+                hasRevealableContent: !!revealableList,
+                isRevealed: false,
+                listId: revealableList ? revealableList.id : null,
+                currentPointIndex: 0,
+                totalPoints: revealableList ? revealableList.querySelectorAll('li').length : 0
+            };
+        });
 
         function updateBackground() {
             const presentationBg = document.getElementById('presentation-bg');
@@ -1167,94 +1135,73 @@ inputs = {
             document.getElementById('current-slide').textContent = currentSlide + 1;
             updateBackground();
             
-            // Update navigation buttons
-            document.getElementById('prev-btn').disabled = currentSlide === 0;
-            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+            // Reset points for new slide
+            const state = slideStates[currentSlide];
+            if (state.hasRevealableContent && state.listId) {
+                const listItems = document.querySelectorAll(`#${state.listId} li`);
+                listItems.forEach(item => item.classList.remove('visible'));
+                state.currentPointIndex = 0;
+                state.isRevealed = false;
+            }
             
-            // Check if current slide has bullet points to reveal
-            setupRevealButton();
+            updateHintText();
         }
 
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                showSlide(currentSlide + 1);
+        function updateHintText() {
+            const hint = document.getElementById('enter-hint');
+            const state = slideStates[currentSlide];
+            
+            if (state && state.hasRevealableContent && !state.isRevealed) {
+                const remaining = state.totalPoints - state.currentPointIndex;
+                if (remaining > 0) {
+                    hint.textContent = `Press ENTER to show next point (${remaining} remaining)`;
+                }
+                else {
+                    hint.textContent = 'Press ENTER for next slide';
+                }
+            } else if (currentSlide < totalSlides - 1) {
+                hint.textContent = 'Press ENTER for next slide';
+            } else {
+                hint.textContent = 'End of presentation';
             }
         }
 
-        function previousSlide() {
-            if (currentSlide > 0) {
-                showSlide(currentSlide - 1);
-            }
-        }
-
-        function setupRevealButton() {
-            // Remove existing reveal button
-            const existingBtn = document.querySelector('.reveal-btn');
-            if (existingBtn) {
-                existingBtn.remove();
-            }
+        function revealNextPoint(listId) {
+            if (!listId) return;
             
-            // Check if current slide has lists to reveal
-            const activeSlide = slides[currentSlide];
-            const revealableLists = activeSlide.querySelectorAll('#scenario-points, #terraform-basics, #terraform-problems, #terragrunt-benefits, #core-concepts, #terragrunt-commands, #skip-terragrunt, #getting-started-steps, #key-takeaways');
-            
-            if (revealableLists.length > 0) {
-                const listId = revealableLists[0].id;
-                const button = document.createElement('button');
-                button.className = 'reveal-btn';
-                button.textContent = getButtonText(listId);
-                button.onclick = () => revealPoints(listId);
-                document.body.appendChild(button);
-            }
-            
-            currentRevealList = null;
-            currentRevealIndex = 0;
-        }
-
-        function getButtonText(listId) {
-            const buttonTexts = {
-                'scenario-points': 'Show Reality Check',
-                'terraform-basics': 'Show Terraform Concepts',
-                'terraform-problems': 'Show Problems',
-                'terragrunt-benefits': 'Show Benefits',
-                'core-concepts': 'Show Concepts',
-                'terragrunt-commands': 'Show Commands',
-                'skip-terragrunt': 'Show Considerations',
-                'getting-started-steps': 'Show Steps',
-                'key-takeaways': 'Show Takeaways'
-            };
-            return buttonTexts[listId] || 'Show Points';
-        }
-
-        function revealPoints(listId) {
             const listItems = document.querySelectorAll(`#${listId} li`);
-            const button = document.querySelector('.reveal-btn');
+            const state = slideStates[currentSlide];
             
-            if (currentRevealList !== listId) {
-                currentRevealList = listId;
-                currentRevealIndex = 0;
-            }
-            
-            if (currentRevealIndex < listItems.length) {
-                listItems[currentRevealIndex].classList.add('visible');
-                currentRevealIndex++;
+            if (state.currentPointIndex < listItems.length) {
+                listItems[state.currentPointIndex].classList.add('visible');
+                state.currentPointIndex++;
                 
-                if (button) {
-                    if (currentRevealIndex < listItems.length) {
-                        button.textContent = 'Next';
-                    } else {
-                        button.style.display = 'none';
-                    }
+                if (state.currentPointIndex >= listItems.length) {
+                    state.isRevealed = true;
                 }
             }
+            
+            updateHintText();
         }
 
-        // Keyboard navigation
+        function handleEnterPress() {
+            const state = slideStates[currentSlide];
+            
+            if (state && state.hasRevealableContent && !state.isRevealed) {
+                // Reveal next bullet point
+                revealNextPoint(state.listId);
+            } else if (currentSlide < totalSlides - 1) {
+                // Move to next slide
+                showSlide(currentSlide + 1);
+            }
+            // If at last slide with all content revealed, do nothing
+        }
+
+        // Keyboard navigation - only Enter key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === 'Space') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                previousSlide();
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent default Enter behavior
+                handleEnterPress();
             }
         });
 
