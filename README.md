@@ -8,7 +8,7 @@ Hosted on https://ceydaduzgec.github.io/presentations/
 
 - ### SRE Days London (16 September 2025)
 **Talk:** *Beginner's Guide to Terragrunt*  
-**Resources:** [Slides](https://ceydaduzgec.github.io/presentations/sre-days-london-17-09-2025/presentation.html) | [Code](https://github.com/ceydaduzgec/presentations/tree/main/sre-days-london-17-09-2025)
+**Resources:** [Slides](https://ceydaduzgec.github.io/presentations/sre-days-london-17-09-2025/slides.html) | [Code](https://github.com/ceydaduzgec/presentations/tree/main/sre-days-london-17-09-2025/example)
 
 ## 2024
 
