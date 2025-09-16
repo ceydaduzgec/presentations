@@ -657,17 +657,11 @@
 
         <!-- Slide 4: Agenda -->
         <div class="slide">
-            <h2>What We'll Cover (25 minutes)</h2>
+            <h2>What We'll Cover</h2>
 
             <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; max-width: 1000px; margin: 0 auto;">
                 <div style="flex: 1;">
                     <div class="agenda-timeline">
-                        <div class="agenda-item">
-                            <div class="agenda-content">
-                                <h3>Terraform Quick Refresher</h3>
-                                <p>Context setting for everyone</p>
-                            </div>
-                        </div>
                         <div class="agenda-item">
                             <div class="agenda-content">
                         <h3>What is Terragrunt?</h3>
@@ -703,29 +697,6 @@
             </div>
         </div>
 
-        <!-- Slide 5: Terraform Quick Refresher -->
-        <div class="slide">
-            <h2>Terraform Quick Refresher</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;"><em>Key concepts you need to understand Terragrunt</em></p>
-            
-            <ul id="terraform-basics">
-                <li><span class="blue-text">Infrastructure as Code (IaC):</span> Define infrastructure using declarative configuration files</li>
-                <li><span class="blue-text">State Management:</span> Terraform tracks your infrastructure in a state file (.tfstate)</li>
-                <li><span class="blue-text">Remote State:</span> Store state files in S3/Azure/GCS for team collaboration</li>
-                <li><span class="blue-text">Modules:</span> Reusable infrastructure components (like functions in programming)</li>
-                <li><span class="blue-text">Environments:</span> Dev, staging, prod - same infrastructure, different configs</li>
-                <li><span class="blue-text">Providers:</span> AWS, Azure, GCP plugins that Terraform uses to manage resources</li>
-            </ul>
-            
-            <div class="code-block">resource "aws_instance" "example" {
-  ami           = "ami-0c02fb55956c7d316"
-  instance_type = "t2.micro"
-  
-  tags = {
-    Name = "example-instance"
-  }
-}</div>
-        </div>
 
         <!-- Slide 6: The Problems with Pure Terraform -->
         <div class="slide">
@@ -766,6 +737,7 @@
                 <h3 style="color: #27ae60; margin-bottom: 15px;">Think of it as Terraform's Smart Assistant</h3>
                 <ul id="terragrunt-benefits" style="color: #27ae60; margin: 0;">
                     <li>Generates backend configurations automatically</li>
+                    <li>Organizes your state files</li>
                     <li>Shares common settings across environments</li>
                     <li>Manages dependencies between modules</li>
                     <li>Keeps your code DRY (Don't Repeat Yourself)</li>
