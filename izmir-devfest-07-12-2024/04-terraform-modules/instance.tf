@@ -49,7 +49,7 @@ module "ec2_instance" {
     Environment = "test"
     Name        = "devfest-test-devfest"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 }

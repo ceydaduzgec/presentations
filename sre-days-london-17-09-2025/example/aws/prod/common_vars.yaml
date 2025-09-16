@@ -1,8 +1,8 @@
-namespace: devfest
+namespace: sreday
 environment: prod
 
 tags:
-  Namespace: devfest
+  Namespace: sreday
   Environment: prod
   Terraform: true
-  Owner: CeydaD
+  Owner: CeydaDuzgec

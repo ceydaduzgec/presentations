@@ -4,7 +4,7 @@ include {
 
 locals {
   common_vars            = yamldecode(file(find_in_parent_folders("common_vars.yaml")))
-  name                   = "devfest"
+  name                   = "ec2"
   ami                    = "ami-02141377eee7defb9"
   instance_type          = "t2.micro"
   encrypted              = true

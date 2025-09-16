@@ -14,7 +14,7 @@ resource "aws_subnet" "tfer--subnet-04f1abd7ee4b4c67b" {
     Environment = "test"
     Name        = "devfest-test-vpc-public-eu-west-1a"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 
@@ -22,7 +22,7 @@ resource "aws_subnet" "tfer--subnet-04f1abd7ee4b4c67b" {
     Environment = "test"
     Name        = "devfest-test-vpc-public-eu-west-1a"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 
@@ -45,7 +45,7 @@ resource "aws_subnet" "tfer--subnet-0520c3cdcbabb9216" {
     Environment = "test"
     Name        = "devfest-test-vpc-private-eu-west-1a"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 
@@ -53,7 +53,7 @@ resource "aws_subnet" "tfer--subnet-0520c3cdcbabb9216" {
     Environment = "test"
     Name        = "devfest-test-vpc-private-eu-west-1a"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 
@@ -76,7 +76,7 @@ resource "aws_subnet" "tfer--subnet-0ab4481dd28121647" {
     Environment = "test"
     Name        = "devfest-test-vpc-public-eu-west-1b"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 
@@ -84,7 +84,7 @@ resource "aws_subnet" "tfer--subnet-0ab4481dd28121647" {
     Environment = "test"
     Name        = "devfest-test-vpc-public-eu-west-1b"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 

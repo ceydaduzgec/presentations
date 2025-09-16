@@ -82,7 +82,7 @@ resource "aws_instance" "tfer--i-070cd2e18bbe9c2b3_devfest-test-devfest" {
     Environment = "test"
     Name        = "devfest-test-devfest"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 
@@ -90,7 +90,7 @@ resource "aws_instance" "tfer--i-070cd2e18bbe9c2b3_devfest-test-devfest" {
     Environment = "test"
     Name        = "devfest-test-devfest"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 

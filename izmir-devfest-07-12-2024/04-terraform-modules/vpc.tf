@@ -24,7 +24,7 @@ module "vpc" {
     Environment = "test"
     Name        = "devfest-test-vpc"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 }

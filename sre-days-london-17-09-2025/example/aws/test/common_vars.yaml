@@ -1,8 +1,8 @@
-namespace: devfest
+namespace: sreday
 environment: test
 
 tags:
-  Namespace: devfest
+  Namespace: sreday
   Environment: test
   Terraform: true
-  Owner: CeydaD
+  Owner: CeydaDuzgec

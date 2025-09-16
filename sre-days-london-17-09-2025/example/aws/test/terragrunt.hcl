@@ -4,7 +4,7 @@ generate "provider" {
   contents  = <<EOF
 provider "aws" {
   region  = "eu-west-1"
-  profile = "sufledev"
+  profile = "sufledev" # Use your AWS profile name here
 }
 EOF
 }
@@ -16,10 +16,10 @@ remote_state {
     if_exists = "overwrite_terragrunt"
   }
   config = {
-    bucket  = "devfest-test-terragrunt-state"
+    bucket  = "sreday-test-terragrunt-state"
     key     = "${path_relative_to_include()}/terraform.tfstate"
     region  = "eu-west-1"
     encrypt = true
-    profile = "sufledev"
+    profile = "sufledev" # Use your AWS profile name here
   }
 }

@@ -11,7 +11,7 @@ resource "aws_vpc" "tfer--vpc-0d24df5a71c6a274b" {
     Environment = "test"
     Name        = "devfest-test-vpc"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 
@@ -19,7 +19,7 @@ resource "aws_vpc" "tfer--vpc-0d24df5a71c6a274b" {
     Environment = "test"
     Name        = "devfest-test-vpc"
     Namespace   = "devfest"
-    Owner       = "CeydaD"
+    Owner       = "CeydaDuzgec"
     Terraform   = "true"
   }
 }
