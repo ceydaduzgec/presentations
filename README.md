@@ -21,4 +21,4 @@ Hosted on https://ceydaduzgec.github.io/presentations/
 
 - ### 13.07: Diva AI
 **Talk:** *Kubernetes and AI*
-**Resources:** [Recording](https://www.youtube.com/live/5evjXgrvfXw?si=JsIS6edh9em2Gk9-&t=24489) | [Slides](https://ceydaduzgec.github.io/presentations/diva-ai-13-07-2024/Kubernetes%20and%20AI.pdf) | [CLI Commands](https://github.com/ceydaduzgec/presentations/blob/main/diva-ai-13-07-2024/commands.md)
+**Resources:** [Recording](https://www.youtube.com/live/5evjXgrvfXw?si=JsIS6edh9em2Gk9-&t=24489) | [Slides](https://ceydaduzgec.github.io/presentations/2024-07-13-diva-ai/Kubernetes%20and%20AI.pdf) | [CLI Commands](https://github.com/ceydaduzgec/presentations/blob/main/2024-07-13-diva-ai/commands.md)
