@@ -8,7 +8,7 @@ Hosted on https://ceydaduzgec.github.io/presentations/
 
 - ### 07.12: DevFest İstanbul
 **Talk:** *From Terraform Chaos to Terragrunt Order*
-**Resources:** [Slides](https://ceydaduzgec.github.io/presentations/2025-12-07-istanbul-devfest/From%20Terraform%20Chaos%20to%20Terragrunt%20Order.pdf)
+**Resources:** [Slides](https://ceydaduzgec.github.io/presentations/2025-12-07-istanbul-devfest/From%20Terraform%20Chaos%20to%20Terragrunt%20Order.pdf) | [Google Slides](https://docs.google.com/presentation/d/1KPQ3vmTuTCseKsVvu5tsOXrUgnQR6rmCn-O2lhK-gwM/edit?usp=sharing)
 
 - ### 16.09: SRE Days London
 **Talk:** *Beginner's Guide to Terragrunt*
