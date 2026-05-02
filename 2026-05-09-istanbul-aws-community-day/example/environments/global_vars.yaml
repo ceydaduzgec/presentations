@@ -1,0 +1,8 @@
+namespace: aws-community-day
+region: eu-central-1
+
+tags:
+  Namespace: aws-community-day
+  Terraform: true
+  Terragrunt: true
+  Owner: CeydaDuzgec

@@ -1,0 +1,15 @@
+environment: prod
+
+vpc:
+  cidr: "10.40.0.0/16"
+  azs:
+    - eu-central-1a
+    - eu-central-1b
+  public_subnets:
+    - "10.40.1.0/24"
+    - "10.40.2.0/24"
+  private_subnets:
+    - "10.40.11.0/24"
+
+tags:
+  Environment: prod
