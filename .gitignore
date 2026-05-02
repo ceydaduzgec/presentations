@@ -1,7 +1,9 @@
 .DS_Store
-ZOTES*
 .vscode/
 *.claude
+*.agents
+
+NOTES.md
 
 ### Terraform ###
 # Local .terraform directories
@@ -14,5 +16,5 @@ ZOTES*
 *.tfstate
 *.tfstate.*
 *.terragrunt*
-*04-terragrunt/aws/test/backend.tf
-*04-terragrunt/provider.tf
+*backend.tf
+*provider.tf

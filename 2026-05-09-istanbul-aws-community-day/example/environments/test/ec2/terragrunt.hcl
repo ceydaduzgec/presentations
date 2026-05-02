@@ -6,7 +6,6 @@ include "root" {
 locals {
   common_vars   = include.root.locals.common_vars
   name          = "ec2"
-  ami           = "ami-09fc5668766215f32"
   instance_type = "t3.micro"
 }
 
@@ -16,21 +15,16 @@ terraform {
 
 inputs = {
   name          = "${local.common_vars.namespace}-${local.common_vars.environment}-${local.name}"
-  ami           = local.ami
   instance_type = local.instance_type
   subnet_id     = dependency.vpc.outputs.public_subnets[0]
+
+  associate_public_ip_address = false
 
   root_block_device = [
     {
       encrypted = true
     }
   ]
-
-  metadata_options = {
-    http_endpoint               = "enabled"
-    http_tokens                 = "required"
-    http_put_response_hop_limit = 1
-  }
 
   tags = local.common_vars.tags
 }
