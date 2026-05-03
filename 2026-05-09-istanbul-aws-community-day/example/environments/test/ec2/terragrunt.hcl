@@ -16,7 +16,7 @@ terraform {
 inputs = {
   name          = "${local.common_vars.namespace}-${local.common_vars.environment}-${local.name}"
   instance_type = local.instance_type
-  subnet_id     = dependency.vpc.outputs.public_subnets[0]
+  subnet_id     = dependency.vpc.outputs.private_subnets[0]
 
   associate_public_ip_address = false
 
