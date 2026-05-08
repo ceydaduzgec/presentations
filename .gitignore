@@ -3,7 +3,7 @@
 *.claude
 *.agents
 
-NOTES.md
+*NOTES*
 
 ### Terraform ###
 # Local .terraform directories
@@ -17,4 +17,3 @@ NOTES.md
 *.tfstate.*
 *.terragrunt*
 *backend.tf
-*provider.tf
